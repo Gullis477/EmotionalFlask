@@ -4,25 +4,18 @@ import matplotlib.pyplot as plt
 from werkzeug.utils import secure_filename
 
 
-#UPLOAD_FOLDER = 'EmotionalFlask\uploads'
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
 
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = r'uploads'
 
 
-#vanliga funktioner
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
 
 #app funktioner
+
 @app.route("/")
 def home():
     return render_template('index.html')
-
 
 @app.route("/simulation")
 def simulation():
@@ -36,7 +29,6 @@ def upload():
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
     return render_template('upload.html')
 
-# Sending the file to the user
 @app.route('/download')
 def display_download():
     items = os.listdir(r'uploads')
@@ -52,10 +44,15 @@ def something_file(thing):
     return send_file(path, as_attachment= True)
 
 if __name__ == '__main__':  
-    app.run(debug = True)  
+    app.run(debug = True)  #Om man ändrar och sparar när servern är igång startar den om automatiskt
 
 
 
 
 
+
+
+
+# $env:FLASK_APP = "hello"
+# $ flask run
 
