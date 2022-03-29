@@ -12,3 +12,5 @@ app = Flask(__name__)
 def home():
     return render_template('home.html')
 
+# $env:FLASK_APP = "hello"
+# $ flask run
