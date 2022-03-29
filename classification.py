@@ -31,11 +31,13 @@ def bar_chart_arousal(data,names,classification):
 # load the model from disk
 loaded_model = pickle.load(open('test_algoritm.sav', 'rb'))
 names = ['alpha_bin','beta_bin','gamma_bin','delta_bin']
-for _ in range(10):
-    dataset = fake_data()
-    result = classify(dataset,loaded_model)
-    bar_chart_arousal(dataset,names,result)
-    time.sleep(3)
+def run(names=names):
+    for _ in range(10):
+        dataset = fake_data()
+        result = classify(dataset,loaded_model)
+        bar_chart_arousal(dataset,names,result)
+        time.sleep(3)
+
 
 
 
