@@ -1,7 +1,4 @@
 <p>Downloads</p>
-<p>{{ output }}</p>
-<p>Go to:</p>
-<p>http://127.0.0.1:5000/download/get/name of file</name></p>
-<p>To recive it</p>
-
-<p><a href ="http://127.0.0.1:5000">Home </a></p>
+{% for item in list_of_files %}
+<p><a href ={{"http://127.0.0.1:5000/download/"+item}}>{{item}} </a></p>
+{% endfor %}
