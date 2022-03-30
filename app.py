@@ -1,6 +1,7 @@
 ############################################################################################################################################
 
 import os, csv
+from csv import writer
 from flask import Flask, render_template, flash ,redirect, url_for,request,send_from_directory, send_file
 import matplotlib.pyplot as plt
 from werkzeug.utils import secure_filename
@@ -48,7 +49,16 @@ def something_file(thing):
 ############################################################################################################################################
 # Övriga Funktioner
 
+def writeincsv( file, data ):
+    '''Takes data that is a list of lists and writes them in the csv file file'''
+    if len( data ) == 1:
+        writer.writerow( data ) # Write one row to csv
+    elif len( data ) > 1: 
+        writer.writerows( data) # Write multiple rows to csv
+        writer.writerows( data ) # Write multiple rows to csv
 
+    file.close()
+    return file
 
 ############################################################################################################################################
 # Run code
