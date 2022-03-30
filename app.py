@@ -1,15 +1,15 @@
-import os
+############################################################################################################################################
+
+import os, csv
 from flask import Flask, render_template, flash ,redirect, url_for,request,send_from_directory, send_file
 import matplotlib.pyplot as plt
 from werkzeug.utils import secure_filename
 
-
-
-
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = r'uploads'
 
-
+############################################################################################################################################
+#app funktioner
 
 #app funktioner
 
@@ -43,16 +43,20 @@ def something_file(thing):
     path="uploads/"+thing
     return send_file(path, as_attachment= True)
 
+
+
+############################################################################################################################################
+# Övriga Funktioner
+
+
+
+############################################################################################################################################
+# Run code
+
 if __name__ == '__main__':  
     app.run(debug = True)  #Om man ändrar och sparar när servern är igång startar den om automatiskt
 
-
-
-
-
-
-
+############################################################################################################################################
 
 # $env:FLASK_APP = "hello"
 # $ flask run
-
