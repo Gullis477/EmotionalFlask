@@ -3,7 +3,7 @@ import csv
 import pandas as pd
 
 
-def write_in_csv(file, data):
+def write_static_data(file, data):
     '''Takes data that is a list of lists and writes them in the csv file file'''
     with open(file, 'w', encoding='UTF8', newline='') as f:
         writer = csv.writer(f)
@@ -13,6 +13,12 @@ def write_in_csv(file, data):
             writer.writerows(data)  # Write multiple rows to csv
 
     return file
+
+
+def add_row_csv(file, data):
+    with open(file, 'a', encoding='UTF8', newline='') as f:
+        writer = csv.writer(f)
+        writer.writerow(data)
 
 
 def load_csv_file(file_name):
@@ -31,6 +37,8 @@ def load_csv_file(file_name):
 
 csv_file = 'DataFiles/test.csv'
 data = [['Title1', 'Title2', 'Title3'], ['Row1Column1', 'Row1Column2', 'Row1Column3'], ['Row2Column1', 'Row2Column2', 'Row2Column3'], ['Row3Column1', 'Row3Column2', 'Row3Column3']]
+add_data = ["AddRow1", "AddRow1", "AddRow1"]
 
-write_in_csv(csv_file, data)
+write_static_data(csv_file, data)
 load_csv_file(csv_file)
+add_row_csv(csv_file, add_data)
