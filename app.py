@@ -45,11 +45,6 @@ def something_file(thing):
     path="uploads/"+thing
     return send_file(path, as_attachment= True)
 
-if __name__ == '__main__':  
-    app.run(debug = True)  #Om man ändrar och sparar när servern är igång startar den om automatiskt
-
-
-
 # TURBO
 def update_load():
     with app.app_context(): #Fattar inte vad app_context() är
