@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <body>
@@ -7,15 +6,8 @@
 <p><a href ="http://127.0.0.1:5000/simulation">Simulation </a></p>
 <p><a href ="http://127.0.0.1:5000/download">Downloads </a></p>
 <p><a href ="http://127.0.0.1:5000/upload">Upload </a></p>
-
-
-<div id="load" class="load">
-    <table>
-      <tr>EEG</tr>
-      <tr><th>Load averages:</th><td>{{ load }}</td></tr>
-    </table>
-    {{ turbo() }}
-  </div>
+{% include "turbo_template.html" %}
+{% block content %}{% endblock %}
 </body>
 
 
