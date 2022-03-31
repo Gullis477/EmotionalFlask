@@ -1,12 +1,63 @@
 
 <!DOCTYPE html>
-<html>
-<body>
 
-<h1>Emotional IDE</h1>
-<p><a href ="http://127.0.0.1:5000/simulation">Simulation </a></p>
-<p><a href ="http://127.0.0.1:5000/download">Downloads </a></p>
-<p><a href ="http://127.0.0.1:5000/upload">Upload </a></p>
+    <head>
+        <title>Emotional</title>
 
-</body>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
+
+
+
+    </head>
+
+    <body>
+
+
+        <header class="header">
+            <h1>Emotional IDE</h1>
+            <nav class="nav">
+              <ul>
+                <li>
+                    <p><a href ="http://127.0.0.1:5000/simulation">Simulation </a></p>
+                </li>
+                <li>
+                    <p><a href ="http://127.0.0.1:5000/download">Downloads </a></p>
+                </li>
+                <li>
+                    <p><a href ="http://127.0.0.1:5000/upload">Upload </a></p>
+                </li>
+                <li>
+                    <p><a href ="http://127.0.0.1:5000">Home </a></p>
+                </li>
+                
+              </ul>
+            </nav>
+
+        </header>
+
+        <div class="wrapper">
+           
+
+            <ul class="bg-bubbles">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                </ul>
+
+
+        </div>    
+        
+      
+
+    </body>
 </html>
