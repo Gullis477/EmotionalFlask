@@ -5,7 +5,7 @@ import pandas as pd
 
 def write_in_csv(file, data):
     '''Takes data that is a list of lists and writes them in the csv file file'''
-    with open('DataFiles/' + file, 'w', encoding='UTF8', newline='') as f:
+    with open(file, 'w', encoding='UTF8', newline='') as f:
         writer = csv.writer(f)
         if len(data) == 1:
             writer.writerow(data)  # Write one row to csv
@@ -26,8 +26,11 @@ def load_csv_file(file_name):
     except FileNotFoundError as Not_Found_Error:
         data_frame = pd.DataFrame()
         print(f'Error Message: {Not_Found_Error}')
+    print(data_frame)
     return data_frame
 
-data = [['Row1Column1', 'Row1Column2', 'Row1Column3'], ['Row2Column1', 'Row2Column2', 'Row2Column3'], ['Row3Column1', 'Row3Column2', 'Row3Column3']]
+csv_file = 'DataFiles/test.csv'
+data = [['Title1', 'Title2', 'Title3'], ['Row1Column1', 'Row1Column2', 'Row1Column3'], ['Row2Column1', 'Row2Column2', 'Row2Column3'], ['Row3Column1', 'Row3Column2', 'Row3Column3']]
 
-write_in_csv('test.csv', data)
+write_in_csv(csv_file, data)
+load_csv_file(csv_file)

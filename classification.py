@@ -3,7 +3,7 @@ import pickle
 import random
 import matplotlib.pyplot as plt
 import time
-import handelCSV
+import handleCSV
 
 # ------------------------------------------------------------------------------
 

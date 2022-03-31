@@ -4,7 +4,7 @@ from flask import Flask, render_template, flash, redirect, url_for, request, sen
 import matplotlib.pyplot as plt
 from werkzeug.utils import secure_filename
 from turbo_flask import Turbo
-import handelCSV
+import handleCSV
 import time
 import threading
 

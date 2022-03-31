@@ -42,9 +42,3 @@ print(classification_report(Y_validation, predictions))
 #saving model
 filename = "test_algoritm.sav"
 pickle.dump(model, open(filename,'wb'))
-
-
-
-
-
-
