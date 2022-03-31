@@ -35,7 +35,7 @@ def load_csv_file(file_name):
     print(data_frame)
     return data_frame
 
-csv_file = 'DataFiles/test.csv'
+csv_file = 'csvfiles/test.csv'
 data = [['Title1', 'Title2', 'Title3'], ['Row1Column1', 'Row1Column2', 'Row1Column3'], ['Row2Column1', 'Row2Column2', 'Row2Column3'], ['Row3Column1', 'Row3Column2', 'Row3Column3']]
 add_data = ["AddRow1", "AddRow1", "AddRow1"]
 
