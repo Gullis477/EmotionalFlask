@@ -40,5 +40,5 @@ data = [['Title1', 'Title2', 'Title3'], ['Row1Column1', 'Row1Column2', 'Row1Colu
 add_data = ["AddRow1", "AddRow1", "AddRow1"]
 
 write_static_data(csv_file, data)
-load_csv_file(csv_file)
 add_row_csv(csv_file, add_data)
+load_csv_file(csv_file)
