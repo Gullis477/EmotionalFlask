@@ -37,15 +37,12 @@ def upload():
 
 @app.route('/download')
 def display_download():
-    items = os.listdir(r'uploads')
-    output = (items if items else 'Nothing to download :(')
-    choice = request.args.get('datafile', '')
-    if choice:
-        send_file(choice, as_attachment=True)
-    return render_template('download.html', output=output)
+    path = 'uploads'
+    list_of_files = list_of_files = os.listdir(path)
+    return render_template('download.html', list_of_files=list_of_files)
 
 
-@app.route('/download/get/<thing>')
+@app.route('/download/<thing>')
 def something_file(thing):
     path = "uploads/" + thing
     return send_file(path, as_attachment=True)
