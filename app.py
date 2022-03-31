@@ -33,24 +33,17 @@ def upload():
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
     return render_template('upload.html')
 
+
 @app.route('/download')
 def display_download():
-    items = os.listdir(r'uploads')
-    output = (items if items else 'Nothing to download :(' )
-    choice= request.args.get('datafile','')
-    if choice:
-        send_file(choice,as_attachment=True)
-    return render_template('download.html',output = output)
+    path = 'uploads'
+    list_of_files = os.listdir(path)
+    return render_template('download.html', list_of_files=list_of_files)
 
-@app.route('/download/get/<thing>')
+@app.route('/download/<thing>')
 def something_file(thing):
     path="uploads/"+thing
     return send_file(path, as_attachment= True)
-
-if __name__ == '__main__':  
-    app.run(debug = True)  #Om man ändrar och sparar när servern är igång startar den om automatiskt
-
-
 
 # TURBO
 def update_load():
@@ -65,7 +58,7 @@ def before_first_request():
 
 @app.context_processor #Taggen gör att alla templates kan använda variablerna (nycklarna i return-dictionaryn) dvs load i detta fallet.
 def inject_load():
-    inputFile = 'CSVFILE.csv'
+    inputFile = 'csvfiles/CSVFILE.csv'
     f1 = open(inputFile, "r")
     last_line = f1.readlines()[-1]
     f1.close()
