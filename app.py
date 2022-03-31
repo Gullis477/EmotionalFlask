@@ -4,7 +4,7 @@ from flask import Flask, render_template, flash, redirect, url_for, request, sen
 import matplotlib.pyplot as plt
 from werkzeug.utils import secure_filename
 from turbo_flask import Turbo
-import handelCSV
+import handleCSV
 import time
 import threading
 
@@ -65,7 +65,7 @@ def before_first_request():
 
 @app.context_processor #Taggen gör att alla templates kan använda variablerna (nycklarna i return-dictionaryn) dvs load i detta fallet.
 def inject_load():
-    inputFile = 'CSVFILE.csv'
+    inputFile = 'csvfiles/CSVFILE.csv'
     f1 = open(inputFile, "r")
     last_line = f1.readlines()[-1]
     f1.close()
