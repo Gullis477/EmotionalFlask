@@ -1,6 +1,74 @@
-<p>Downloads</p>
-{% for item in list_of_files %}
-<p><a href ={{"http://127.0.0.1:5000/download/"+item}}>{{item}} </a></p>
-{% endfor %}
+<!DOCTYPE html>
 
-<p><a href ="http://127.0.0.1:5000">Home </a></p>
+    <head>
+        <title>Download</title>
+
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    </head>
+
+    <body>
+
+        <header class="header">
+            <h1>Emotional IDE</h1>
+
+            <nav class="nav">
+              <ul>
+                <li>
+                    <p><a href ="http://127.0.0.1:5000/simulation">Simulation </a></p>
+                </li>
+                <li>
+                    <p><a href ="http://127.0.0.1:5000/download">Downloads </a></p>
+                </li>
+                <li>
+                    <p><a href ="http://127.0.0.1:5000/upload">Upload </a></p>
+                </li>
+                <li>
+                    <p><a href ="http://127.0.0.1:5000">Home </a></p>
+                </li>
+                
+              </ul>
+            </nav>
+
+        </header>
+
+
+        <div class="wrapper">
+
+            <div style="margin-top: 200px;">
+
+
+                <p>Downloads</p>
+                <p>{{ output }}</p>
+                <p>Go to:</p>
+                <p>http://127.0.0.1:5000/download/get/name of file</name></p>
+                <p>To recieve it</p>
+                    
+
+            </div>
+
+            <ul class="bg-bubbles">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+
+
+        </div>
+        
+        
+        
+        
+                
+    </body>
+</html>
+

@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+
+
+.wrapper {
+  background: #50a3a2;
+  background: -webkit-linear-gradient(top left, #a14e4e 0%, #e35353 100%);
+  background: linear-gradient(to bottom right, #0078d7  0%, #000000 100%);
+  position: absolute;
+  top: 0%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+p {
+  pointer-events: auto; 
+  z-index: 10;
+}
+
+form {
+  pointer-events: none;
+}
+
+input {
+  pointer-events: auto; 
+  z-index: 10;
+
+}
+
+h1 {
+  z-index: 10;
+}
+
+img {
+  z-index: 1000;  /*njnjk*/
+  margin-top: 200px; /*fixa jpg bild eller fixa med style för animation*/
+  border: #e35353;
+}
+
+.bg-bubbles {
+  position: absolute;
+  top: -150px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+
+}
+.bg-bubbles li {
+  position: absolute;
+  list-style: none;
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.15);
+  bottom: -300px;
+  -webkit-animation: square 5s infinite;
+  animation: square 40s infinite;
+  -webkit-transition-timing-function: linear;
+  transition-timing-function: linear;
+}
+.bg-bubbles li:nth-child(1) {
+  left: 10%;
+}
+.bg-bubbles li:nth-child(2) {
+  left: 20%;
+  width: 80px;
+  height: 80px;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+  -webkit-animation-duration: 17s;
+          animation-duration: 17s;
+}
+.bg-bubbles li:nth-child(3) {
+  left: 25%;
+  -webkit-animation-delay: 4s;
+          animation-delay: 4s;
+}
+.bg-bubbles li:nth-child(4) {
+  left: 40%;
+  width: 60px;
+  height: 60px;
+  -webkit-animation-duration: 22s;
+          animation-duration: 22s;
+  background-color: rgba(255, 255, 255, 0.25);
+}
+.bg-bubbles li:nth-child(5) {
+  left: 70%;
+}
+.bg-bubbles li:nth-child(6) {
+  left: 80%;
+  width: 120px;
+  height: 120px;
+  -webkit-animation-delay: 3s;
+          animation-delay: 3s;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.bg-bubbles li:nth-child(7) {
+  left: 32%;
+  width: 160px;
+  height: 160px;
+  -webkit-animation-delay: 7s;
+          animation-delay: 7s;
+}
+.bg-bubbles li:nth-child(8) {
+  left: 55%;
+  width: 20px;
+  height: 20px;
+  -webkit-animation-delay: 15s;
+          animation-delay: 15s;
+  -webkit-animation-duration: 40s;
+          animation-duration: 40s;
+}
+.bg-bubbles li:nth-child(9) {
+  left: 25%;
+  width: 10px;
+  height: 10px;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+  -webkit-animation-duration: 40s;
+          animation-duration: 40s;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+.bg-bubbles li:nth-child(10) {
+  left: 90%;
+  width: 160px;
+  height: 160px;
+  -webkit-animation-delay: 11s;
+          animation-delay: 11s;
+}
+@-webkit-keyframes square {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(1200px) rotate(600deg);
+            transform: translateY(-1200px) rotate(600deg);
+  }
+}
+@keyframes square {
+  0% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  100% {
+    -webkit-transform: translateY(1200px) rotate(600deg);
+            transform: translateY(-1200px) rotate(600deg);
+  }
+}
+
+
+
+body{
+  padding: 0;
+  margin: 0;
+  font-family: "Ubuntu", sans-serif;
+  width: 100%;
+  height: 100%;
+}
+
+.header{
+  position: fixed;
+  top:0;
+  z-index: 99;
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0 15px 0;
+  text-align: center;
+  background: linear-gradient(to      bottom,#1e5799,#326B9B);
+  box-shadow: 0 5px 5px 0 rgba(0,0,0,.25);
+}
+.header>h1{
+  color: white;
+  text-shadow: 0 0 10px rgba(0,0,0,.6);
+}
+.nav{
+  width: auto;
+}
+.nav ul{
+  padding: 0px;
+  height: 50px;
+  box-sizing: border-box;
+  list-style: none;
+  background-color: #326B9B;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,.5);
+  border-radius: 10px;
+}
+.nav a{
+  outline: none;
+  margin: 0 25px;
+  margin-bottom: 0;
+  padding: 10px 12px;
+  width: auto;
+  text-decoration: none;
+  color: white;
+}
+.nav a:hover{
+  background-color: #204E7B;
+}
+.nav li{
+  flex: auto auto auto;
+  padding: 0px;
+  margin: 0px 0px;
+  height: auto;
+}
+.nav li:first-child>a{
+  border-bottom: 1px solid #FFD447;
+}
+
+.simuldiv article{
+  z-index: 1000;
+  float: left;
+}

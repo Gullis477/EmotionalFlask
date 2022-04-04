@@ -4,7 +4,6 @@ from flask import Flask, render_template, flash, redirect, url_for, request, sen
 import matplotlib.pyplot as plt
 from werkzeug.utils import secure_filename
 from turbo_flask import Turbo
-import handleCSV
 import time
 import threading
 
@@ -21,9 +20,11 @@ turbo = Turbo(app)
 def home():
     return render_template('index.html')
 
+
 @app.route("/simulation")
 def simulation():
     return render_template('simulation.html')
+
 
 @app.route('/upload', methods=['GET', 'POST'])  
 def upload():  
@@ -40,10 +41,12 @@ def display_download():
     list_of_files = os.listdir(path)
     return render_template('download.html', list_of_files=list_of_files)
 
+
 @app.route('/download/<thing>')
 def something_file(thing):
     path="uploads/"+thing
     return send_file(path, as_attachment= True)
+
 
 # TURBO
 def update_load():
@@ -52,9 +55,26 @@ def update_load():
             time.sleep(2)
             turbo.push(turbo.replace(render_template('turbo_template.html'), 'load')) #Tror att denna raden uppdaterar elementet med id 'load' i templated loadavg.html
 
+
+@app.context_processor
+def override_url_for():
+    return dict(url_for=dated_url_for)
+
+
+def dated_url_for(endpoint, **values):
+    if endpoint == 'static':
+        filename = values.get('filename', None)
+        if filename:
+            file_path = os.path.join(app.root_path,
+                                 endpoint, filename)
+            values['q'] = int(os.stat(file_path).st_mtime)
+    return url_for(endpoint, **values)
+
+
 @app.before_first_request #Denna tag gör så att funktionen körs innan den första "requesten". Koden i funktionen hade kunnat köras innan "run" i huvudprogrammet
 def before_first_request():
     threading.Thread(target=update_load).start() #startar en till tråd kör update_load
+
 
 @app.context_processor #Taggen gör att alla templates kan använda variablerna (nycklarna i return-dictionaryn) dvs load i detta fallet.
 def inject_load():
@@ -63,6 +83,7 @@ def inject_load():
     last_line = f1.readlines()[-1]
     f1.close()
     return {'load':last_line }
+    
 # ------------------------------------------------------------------------------
 # Run code
 
