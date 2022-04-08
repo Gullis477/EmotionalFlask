@@ -35,7 +35,7 @@ h1 {
 }
 
 img {
-  z-index: 99;  /*njnjk*/
+  z-index: 1;  /*njnjk*/
   margin-top: 200px; /*fixa jpg bild eller fixa med style för animation*/
   position: absolute;   /*ta bort för att ta igenom partiklar */
 }
