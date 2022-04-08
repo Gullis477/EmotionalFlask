@@ -3,7 +3,8 @@ import os
 from flask import Flask, render_template, flash, redirect, url_for, request, send_from_directory, send_file
 import matplotlib.pyplot as plt
 from werkzeug.utils import secure_filename
-from turbo_flask import Turbo
+
+from turbo_flask import Turbo #app
 import time
 import threading
 

@@ -5,6 +5,7 @@
         
         <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon2.png') }}">
 
     </head>
 
@@ -34,41 +35,43 @@
         </header>
 
 
-        <ul class="bg-bubbles">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
 
 
         <div class="wrapper">
         
-            <article class="simuldiv">
+            <h1 style="margin-top: 220px; color: white; margin-left: 20px; font-size: 40px;">Simulation</h1>
+
+            <!-- <article class="simuldiv"> -->
                 
-                <img src="{{url_for('static', filename='eyy.png')}}" />
+            <img style="margin-top: 0px; margin-left: 20px;" src="{{url_for('static', filename='eyy.png')}}" />
 
-                <script>
+            <script>
+            
+                function timedRefresh(timeoutPeriod) {
+                    setTimeout("location.reload(true);",timeoutPeriod);
+                }
                 
-                    function timedRefresh(timeoutPeriod) {
-                        setTimeout("location.reload(true);",timeoutPeriod);
-                    }
-                    
-                   // window.onload = timedRefresh(10000); //refresh rate ta bort eller öka
-                    
-                    //   -->
-                </script>
+                // window.onload = timedRefresh(10000); //refresh rate ta bort eller öka
+                
+                //   -->
+            </script>
 
 
                 
+            <ul class="bg-bubbles">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
 
-            </article>
+            <!-- </article> -->
         </div>
            
 
