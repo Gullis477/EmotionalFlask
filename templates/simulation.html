@@ -28,10 +28,16 @@
                 <li>
                     <p><a href ="http://127.0.0.1:5000">Home </a></p>
                 </li>
-                
+
+                <body>
+                    
+                    {% include "turbo_template.html" %}
+                    {% block content %}{% endblock %}
+                </body>
+
             </ul>
             </nav>
-
+            {{ turbo() }}
         </header>
 
 
@@ -39,31 +45,10 @@
 
         <div class="wrapper">
         
-            <h1 style="margin-top: 220px; color: white; margin-left: 20px; font-size: 40px;">Simulation</h1>
+            <article class="simuldiv">
 
-            <!-- <article class="simuldiv"> -->
+
                 
-            <img style="margin-top: 0px; margin-left: 20px;" src="{{url_for('static', filename='eyy.png')}}" />
-
-            <script>
-            
-                function timedRefresh(timeoutPeriod) {
-                    setTimeout("location.reload(true);",timeoutPeriod);
-                }
-                
-                // window.onload = timedRefresh(10000); //refresh rate ta bort eller öka
-                
-                //   -->
-            </script>
-
-            <div class="livediv">
-            {{ turbo() }}
-            {% include "turbo_template.html" %}
-            {% block content %}{% endblock %}
-            {{ turbo() }}
-            </div>
-
-
             <ul class="bg-bubbles">
                 <li></li>
                 <li></li>
@@ -83,6 +68,8 @@
 
 
     </body>
+
+<p>hej</p>
     
 </html>
 
