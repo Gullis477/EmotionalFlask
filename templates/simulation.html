@@ -56,8 +56,14 @@
                 //   -->
             </script>
 
+            <div class="livediv">
+            {{ turbo() }}
+            {% include "turbo_template.html" %}
+            {% block content %}{% endblock %}
+            {{ turbo() }}
+            </div>
 
-                
+
             <ul class="bg-bubbles">
                 <li></li>
                 <li></li>
