@@ -2,6 +2,7 @@
 import os
 from flask import Flask, render_template, flash, redirect, url_for, request, send_from_directory, send_file
 import matplotlib.pyplot as plt
+from numpy import result_type
 from werkzeug.utils import secure_filename
 
 from turbo_flask import Turbo #app
@@ -79,14 +80,15 @@ def inject_load():
     # with open('data.csv', "r") as f1:
     #     for line in f1:
     #         last_line = line
-    last_line = [random.random() for _ in range(4)]
-    loaded_model = pickle.load(open('test_algoritm.sav', 'rb'))
-    
-    result = classification.classify(last_line,loaded_model)
+    last_line = [random.random() for _ in range(53)]
+    loaded_arousal_model = pickle.load(open('test_arousal_algoritm.sav', 'rb'))
+    loaded_valence_model = pickle.load(open('test_valence_algoritm.sav', 'rb'))
+    result_arousal  = classification.classify(last_line,loaded_arousal_model)
+    result_valence  = classification.classify(last_line,loaded_valence_model)
 
 
     
-    return {'load_data': last_line,'load_emotion':result}
+    return {'load_data': last_line,'load_emotion':[result_arousal,result_valence]}
 
 # TURBO
 def update_load():
