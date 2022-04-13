@@ -6,6 +6,7 @@
         <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon2.png') }}">
 
     </head>
 
@@ -39,12 +40,12 @@
 
             <div style="margin-top: 200px;">
 
-
-                <p>Downloads</p>
+                <h1 style="margin-top: 220px; color: white; margin-left: 20px; font-size: 40px;">Downloads</h1>
                 <p>{{ output }}</p>
-                <p>Go to:</p>
-                <p>http://127.0.0.1:5000/download/get/name of file</name></p>
-                <p>To recieve it</p>
+                <p class="download"> Go to: </p>
+                <p class="download"> http://127.0.0.1:5000/download/get/name of file </name> </p> <!-- name tag -->
+                <p class="download"> To recieve it</p>
+                <p>{{ output }}</p> <!-- vet inte vad den gör -->
                     
 
             </div>

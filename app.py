@@ -2,10 +2,15 @@
 import os
 from flask import Flask, render_template, flash, redirect, url_for, request, send_from_directory, send_file
 import matplotlib.pyplot as plt
+from numpy import result_type
 from werkzeug.utils import secure_filename
-from turbo_flask import Turbo
+
+from turbo_flask import Turbo #app
 import time
 import threading
+import random
+import classification
+import pickle
 
 # initialization
 app = Flask(__name__)
@@ -48,13 +53,6 @@ def something_file(thing):
     return send_file(path, as_attachment= True)
 
 
-# TURBO
-def update_load():
-    with app.app_context(): #Fattar inte vad app_context() är
-        while True:
-            time.sleep(2)
-            turbo.push(turbo.replace(render_template('turbo_template.html'), 'load')) #Tror att denna raden uppdaterar elementet med id 'load' i templated loadavg.html
-
 
 @app.context_processor
 def override_url_for():
@@ -76,14 +74,30 @@ def before_first_request():
     threading.Thread(target=update_load).start() #startar en till tråd kör update_load
 
 
-@app.context_processor #Taggen gör att alla templates kan använda variablerna (nycklarna i return-dictionaryn) dvs load i detta fallet.
+
+@app.context_processor
 def inject_load():
-    inputFile = 'csvfiles/CSVFILE.csv'
-    f1 = open(inputFile, "r")
-    last_line = f1.readlines()[-1]
-    f1.close()
-    return {'load':last_line }
+    # with open('data.csv', "r") as f1:
+    #     for line in f1:
+    #         last_line = line
+    last_line = [random.random() for _ in range(53)]
+    loaded_arousal_model = pickle.load(open('test_arousal_algoritm.sav', 'rb'))
+    loaded_valence_model = pickle.load(open('test_valence_algoritm.sav', 'rb'))
+    result_arousal  = classification.classify(last_line,loaded_arousal_model)
+    result_valence  = classification.classify(last_line,loaded_valence_model)
+
+
     
+    return {'load_data': last_line,'load_emotion':[result_arousal,result_valence]}
+
+# TURBO
+def update_load():
+    with app.app_context(): #Fattar inte vad app_context() är
+        while True:
+            time.sleep(2)
+            turbo.push(turbo.replace(render_template('turbo_template.html'), 'load')) #Tror att denna raden uppdaterar elementet med id 'load' i templated loadavg.html
+
+
 # ------------------------------------------------------------------------------
 # Run code
 
