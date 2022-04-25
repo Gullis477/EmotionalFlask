@@ -10,7 +10,7 @@
 
 
         <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon2.png') }}">
-  
+        <meta charset=“UTF-8”>  
       
     </head>
 
@@ -41,10 +41,25 @@
 
         <div class="wrapper">
             
-           
-           
-           
+            <h1 style="margin-top: 220px; color: white; margin-left: 20px; font-size: 40px;">Home</h1>
 
+           
+            <!-- <form style="margin-top: 50px;">   -->
+            <input type="button" onclick="stuff()" value="Start" name="file" class="start"/> 
+            <button type="file" name="file" class="start">hej</button>
+
+                                                                    <!-- onclick="startDataCollection()" -->
+            <!-- </form>              -->
+
+
+            <script>
+                function stuff(){
+
+                    console.log("hej");
+
+                }
+
+            </script>
 
             <ul class="bg-bubbles">
                 <li></li>
