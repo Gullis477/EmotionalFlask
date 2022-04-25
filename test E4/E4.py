@@ -28,8 +28,15 @@ def graph_bvp( bvp=bvp ):
     # header = str( 16443467447.0000 )
     x = [ i for i in range( len( bvp[2:] ) ) ]
     y = bvp[ 2: ]
+    y.columns = [ 'bvp' ] # assign headers
+    # print( y )
 
-    data_linreg = np.polyfit( x, y, 3 )
+    y.divide( 400, fill_value=0 )
+
+    print( y )
+
+
+    data_linreg = np.polyfit( x, y, 1 )
     xp = np.linspace( 5, 33000, 3000)
     pr = np.polyval( data_linreg, xp)
 
