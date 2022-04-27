@@ -10,8 +10,11 @@
 
 
         <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon2.png') }}">
-  
-      
+        <meta charset=“UTF-8”>  
+
+
+        
+
     </head>
 
     <body>
@@ -41,10 +44,145 @@
 
         <div class="wrapper">
             
-           
-           
-           
+            <h1 style="margin-top: 220px; color: white; margin-left: 20px; font-size: 40px;">Home</h1>
 
+           
+            <!-- <form style="margin-top: 50px;">   -->
+            <input style="background: #02499b;" type="button" onclick="test()"  value="Start" id = "start" class="start"/> 
+
+            <input style="background: #02499b;" type="button"  value="Stop" onclick="red()" id = "stop" class="start"/> 
+
+
+            <script>
+
+                    let arrstart = ['Saab'];
+                    let arrstop = ['Saab'];
+
+
+                    function test(){
+                        let elemstart = document.getElementById('start');
+                        let elemstop = document.getElementById('stop');
+
+                        let elemcolorstop = document.getElementById('stop').style.backgroundColor;
+                        let elemcolorstart = document.getElementById('start').style.backgroundColor;
+                        console.log(elemcolorstart);
+                        console.log(elemcolorstop);
+
+
+                        if (arrstop[arrstop.length-1] == "rgb(238, 4, 11)" && elemcolorstart == "rgb(2, 73, 155)") {    //red
+                            console.log("5555");
+                            elemstop.style.background = 'rgb(2, 73, 155)'; //blue
+                            elemstart.style.background = 'rgb(68, 227, 2)'; //green
+
+                        }
+                        if (elemcolorstart === "rgb(2, 73, 155)") { //blue
+                            console.log("1111");
+                            elemstart.style.background = 'rgb(68, 227, 2)'; //green
+                            arrstart.push("rgb(68, 227, 2)");
+                        }
+                        else if (elemcolorstart === "rgb(68, 227, 2)") {    //green
+                            console.log("3333");
+                            
+                            elemstart.style.background = 'rgb(68, 227, 2)';     //green
+                            arrstart.push("rgb(68, 227, 2)");
+
+                        }
+                       
+                        
+                    }
+
+                    function red() {
+                        let elemstop = document.getElementById('stop');
+                        let elemstart = document.getElementById('start');
+
+                        let elemcolorstop = document.getElementById('stop').style.backgroundColor;
+
+                        if (arrstart[arrstart.length-1] == "rgb(68, 227, 2)" && elemcolorstop == "rgb(2, 73, 155)") {     //green
+                            console.log("5555");
+                            elemstop.style.background = 'rgb(238, 4, 11)'; //red
+                            elemstart.style.background = 'rgb(2, 73, 155)'; //blue
+
+                        }
+                        if (elemcolorstop == "rgb(2, 73, 155)") {  //blue
+                            console.log("2222");
+                            elemstop.style.background = 'rgb(238, 4, 11)';  //red
+                            arrstop.push("rgb(238, 4, 11)");
+
+                        }   
+                        else if (arrstop[arrstop.length-1] === "rgb(238, 4, 11)") {         //red
+                            console.log("4444");
+                            elemstop.style.background = 'rgb(238, 4, 11)';      //blue
+                            arrstop.push("rgb(238, 4, 11)");
+
+                        }
+                       
+                    }
+
+                
+                    
+            </script>
+            
+            <!-- <ul style="margin-top: 300px;" class="list">
+            <li>test 1</li>
+            <li>test 2</li>
+            <li>test 3</li>
+            </ul>
+
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
+                // $(".list").on("click", "li", function(){
+                //     $(this).toggleClass('active');
+                // });
+            </script> -->
+            
+            <!-- <button type="file" name="file" class="foo">hej</button> -->
+
+                                                                    <!-- onclick="startDataCollection()" -->
+            <!-- </form>              -->
+
+
+            <!-- <script type="text/javascript">
+
+
+
+
+
+                function changeStart(newcolor1, newcolor2){
+                    // let elem = document.getElementsByClassName("start");
+                   
+                    // elem.addEventListener('click', function onClick(event) {
+                    // event.target.style.backgroundColor = 'salmon';
+                        let start = document.getElementById('start');
+                        let stop = document.getElementById('stop');
+
+                        start.style.background = newcolor1;
+                        console.log("hej");
+                }
+
+                function chnageStop(newcolor1, newcolor2) {
+                        let stop = document.getElementById('stop');
+                        let start = document.getElementById('start');
+
+
+                        console.log(start.style.background + "färg 1");
+                        console.log(newcolor1 + "färg 2");
+
+                        if (start.style.background == rgb(2, 73, 155)) {
+                            start.style.background = '#02499b;';
+                            console.log("changestop");
+
+                        }
+                        else if (stop.style.background == newcolor2) {
+                            stop.style.background = '#02499b';
+                            console.log("changestop");
+                            return;
+                        }
+
+                        stop.style.background = newcolor2;
+                        console.log("då");
+                }
+
+            </script> -->
 
             <ul class="bg-bubbles">
                 <li></li>

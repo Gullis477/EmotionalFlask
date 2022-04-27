@@ -272,9 +272,107 @@ body{
     border-radius: 5px;
   }
 
+  .start {
+    position: relative;
+    display: inline;
+    margin-top: 0px;
+    margin-left: 20px;
+    width: 200px;
+    cursor: pointer;
+    background: #02499b;
+    height: 60px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 20px;
+    z-index: 11;
+}
+/* .start:hover:after {
+    background: #3fc605;
+
+} */
+/* 
+.start:after {
+    transition: 200ms all ease;
+    z-index: 11;
+
+    border-bottom: 3px solid rgba(0,0,0,.2);
+    background: #02499b;
+    text-shadow: 0 2px 0 rgba(0,0,0,.2);
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: 'Start';
+    line-height: 60px;
+    border-radius: 10px;
+  }
+
+
+
+
+
+ */
+
+
+
+
 
 
 .download{
   color: white;
   margin-left: 20px;
+}
+
+.livediv {
+  margin-top: 600px;
+}
+
+.emojis {
+  font-size: 4em;
+  float: left;
+  border: #e35353;
+  margin-left: 1200px;
+  margin-top: -100px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.list {
+  width: 100%;
+  padding: 0;
+  /* z-index: 30;
+  position: auto; */
+}
+.list li {
+  padding: 5px 10px;
+  list-style: none;
+  cursor: pointer;
+  /* position: none; */
+
+}
+.list li:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+
+}
+.list li.active {
+  background-color: #eeeecc;
+
 }

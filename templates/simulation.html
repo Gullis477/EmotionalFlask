@@ -6,14 +6,14 @@
         <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon2.png') }}">
-
+        <meta charset=“UTF-8”>
     </head>
 
     <body>
 
         
-        <header class="header">
-            <h1>Emotional IDE</h1>
+        <header class="header" style="height: 162px;">
+            <h1 style="margin-top: 73px;">Emotional IDE</h1>
             <nav class="nav">
             <ul>
                 <li>
@@ -31,13 +31,16 @@
 
                 <body>
                     
-                    {% include "turbo_template.html" %}
-                    {% block content %}{% endblock %}
+                    <!-- {% include "turbo_template.html" %}
+                    {% block content %}{% endblock %} -->
                 </body>
+    
 
             </ul>
+
             </nav>
-            {{ turbo() }}
+            <p id="emoji" class="emojis"></p>    <!--emoji, make function to chnage depending on emotion -->
+
         </header>
 
 
@@ -45,10 +48,147 @@
 
         <div class="wrapper">
         
-            <article class="simuldiv">
+            <article>
+                <h1 style="margin-top: 220px; color: white; margin-left: 20px; font-size: 40px;">Simulation</h1>
+                <div id="load" class="load">
+                    <table>
+                      <tr>  </tr>
+                      <tr>  </tr>
+                      <tr>  </tr>
+                      <tr>  </tr>
+                      <tr>  </tr>
+                      <tr>  </tr>
+                      <tr>  </tr>
+                      <tr>  </tr>
+                      <tr>  </tr>
+                      <tr>EEG</tr>
 
+                      <tr><th>Amplitude:</th>
+                        <td>{{ load_data }}</td>
+                        </tr>
+
+                      <tr><th>Arousal:</th>
+                        <td>{{ load_emotion }}</td>
+                    </tr>
+                    </table>
+                    {{ turbo() }}
+
+                  </div>
+            </article>    
+
+
+
+
+
+            <script  type = "text/javascript">
+                
+                
+
+
+                emotion = "sad";          //lägg in på något sätt att emotion uppdaters automatiskt annars funkar
+                //console.log(emotion);
+
+
+                switch(emotion)
+                {
+                    case "happy":
+                        text = "&#x1F603;";
+                        break;
+
+                    case "sad":
+                        text = "&#x1F62D;";
+                        break;
+                    
+                    case "stressed":
+                        text = "&#x1F632;";
+                        break;
+
+                    case "angry":
+                        text = "&#x1F608;";
+                        break;
+
+                    default:
+                        text = "broken";
+
+                }
+
+                setInterval(function () {
+                document.getElementById("emoji").innerHTML = text;} , 1000);                      //updateras varje sekund
+
+                //document.getElementById("emoji").innerHTML = text;
+
+
+                // function checksign(emotion) {
+
+                // }
+
+
+                //     if (emotion = "happy")
+                //     {
+                //         // elem.innerHTML.replace = "&#x1F600;";
+                //         console.log("1");
+                //         return "&#x1F600;";
+                //     }
+                //     else if (emotion = "sad") {
+                //         // elem.innerHTML.replace = "&#x1F62A;";
+                //         console.log("2");
+
+                //         return "&#x1F62A;";
+                //     }
+                //     else if (emotion = "stressed") {
+                //         // elem.innerHTML.replace = "&#x1F632;";
+                //         console.log("3");
+
+                //         return "&#x1F632;";
+                //     }
+                //     else if (emotion = "angry") {
+                //         // elem.innerHTML = '<p id="emoji" style="font-size: 8em;">&#x1F621;</p>';
+                //         console.log("4");
+
+                //         return "&#x1F621;";
+                //     }
+                // }
+
+                // let element = document.querySelector('#emoji');
 
                 
+
+                // replacement = checksign(newEmotion);
+                // console.log(replacement);
+                // replacement = "&#x1F621;";
+                // console.log(replacement);
+                // element.innerHTML = replacement;
+
+            
+
+                //     newEmotion = 'stressed';
+                //     let replacement = checksign(newEmotion);
+                //     replacement = "&#x1F632;";
+                //     console.log(replacement);
+
+                //     let element = document.getElementById('emoji');
+                // //    element.innerHTML = '<h2>Section replaced dynamically!!</h2>';
+                //     // element.innerHTML = '<p>'replacement'</p>';
+                //     element.appendChild(replacement);
+
+                        // få newEmotion med python på ett smidigt sätt här kanske turbo flask
+                    // let elem = document.getElementById('emoji');
+
+                    // newEmotion = "angry";
+                    // console.log(newEmotion);
+
+                
+
+                
+                
+                // elem.innerHTML = checksign(newEmotion)
+                // console.log(elem.innerHTML);
+
+            </script>
+
+            
+
+
             <ul class="bg-bubbles">
                 <li></li>
                 <li></li>
@@ -62,14 +202,12 @@
                 <li></li>
             </ul>
 
-            <!-- </article> -->
         </div>
            
 
 
     </body>
 
-<p>hej</p>
     
 </html>
 

@@ -6,7 +6,7 @@
         <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon2.png') }}">
-
+        <meta charset=“UTF-8”>
     </head>
 
     <body>
@@ -48,7 +48,7 @@
            
 
 
-            <form style="margin-top: 50px;" action = "/upload" method = "post" enctype="multipart/form-data">  
+            <form style="margin-top: 20px;" action = "/upload" method = "post" enctype="multipart/form-data">  
                 <input type="file" name="file"  onchange="loadFile(event)" class="foo"/>  
             </form>  
 
