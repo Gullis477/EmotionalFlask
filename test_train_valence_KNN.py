@@ -18,7 +18,7 @@ dataset = read_csv("csvfiles\SAM_valence.csv")
 
 # Split-out validation dataset
 array = dataset.values
-X = array[:,0:53]
+X = array[:,1:53]
 y = array[:,53]
 X_train, X_validation, Y_train, Y_validation = train_test_split(X, y, test_size=0.20, random_state=1)
 name = 'KNN'
