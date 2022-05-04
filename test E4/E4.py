@@ -13,7 +13,7 @@ import matplotlib.animation as animation
 import ipywidgets as widgets
 from ipywidgets import interact 
 # ------------------------------------------------------------------------------------------------
-# Import CSV as dfs and fix them:
+# Import CSV as a single dataframe
 
 mapp =  "csvfiles/E4.try/"
 bvp =   pd.DataFrame( read_csv( mapp + "BVP.csv" ) )     #
@@ -23,10 +23,12 @@ ibi =   pd.DataFrame( read_csv( mapp + "IBI.csv" ) )     # col1 = time, col2 = d
 temp =  pd.DataFrame( read_csv( mapp + "TEMP.csv" ) )    # 
 
 bvp.columns =   { 'BVP' }
-# bvp = bvp.iloc[ ::100, : ]
 ibi.columns =   { 'time', 'IBI' }
-
 eda.columns = { 'EDA' }
+
+frames = [ bvp, eda, hr, ibi, temp ]
+dataFrame = pd.concat( frames, axis=0, join="outer", keys=None )
+print( dataFrame )
 
 # ------------------------------------------------------------------------------------------------
 # Graphs 
@@ -75,16 +77,16 @@ def graph_eda( eda=eda ):
 
 
 
-def all_e4( bvp=bvp, eda=eda, hr=hr, ibi=ibi, temp=temp ):
+def all_e4( df=dataFrame ):
 
-    bvp_x = [ i for i in range( len( bvp[2:] ) ) ]
-    bvp_y = bvp[ 'BVP' ][ 2: ]
+    bvp_x = [ i for i in range( len( df[2:] ) ) ]
+    bvp_y = df[ 'BVP' ][ 2: ]
 
-    ibi_x = ibi[ 'time' ]
-    ibi_y = ibi[ 'IBI' ]
+    ibi_x = df[ 'time' ]
+    ibi_y = df[ 'IBI' ]
 
-    eda_x = [ i for i in range( len( eda[ 'EDA' ][2:] ) ) ]
-    eda_y = eda[ 'EDA' ][ 2: ]
+    eda_x = [ i for i in range( len( df[ 'EDA' ][2:] ) ) ]
+    eda_y = df[ 'EDA' ][ 2: ]
 
     hr_x = [ 1, 2, 3, 4 ]
     hr_y = [ 1, 2, 3, 4 ]
