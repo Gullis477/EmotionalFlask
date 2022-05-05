@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
     <head>
-        <title>Download</title>
+        <title>Download - Emotional IDE</title>
 
         <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,17 +38,78 @@
 
         <div class="wrapper">
 
-            <div style="margin-top: 200px;">
+            <!-- <div style="margin-top: 200px;">
 
                 <h1 style="margin-top: 220px; color: white; margin-left: 20px; font-size: 40px;">Downloads</h1>
                 <p>{{ output }}</p>
                 <p class="download"> Go to: </p>
-                <p class="download"> http://127.0.0.1:5000/download/get/name of file </name> </p> <!-- name tag -->
+                <p class="download"> http://127.0.0.1:5000/download/get/name of file </name> </p> 
                 <p class="download"> To recieve it</p>
-                <p>{{ output }}</p> <!-- vet inte vad den gör -->
+                <p>{{ output }}</p> 
                     
 
-            </div>
+            </div> -->  
+
+
+            <h1 class="table-title" style="margin-top: 220px; color: white; margin-left: 20px; font-size: 40px; font-family: Ubuntu, sans-serif;">Downloads</h1>
+
+
+            <!-- <div class="table-title">
+                <h3>Data Table</h3>
+            </div> -->
+            <article>
+                <table class="table-fill">
+                    <thead>
+                        <tr>
+                        <th class="text-left">File</th>
+                        <!-- <th class="text-left">Time</th> -->
+                        <th class="text-left">Size</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-hover">
+                        <!-- <tr>
+                        <td class="text-left">January</td>
+                        <td class="text-left">$ 50,000.00</td>
+                        </tr> -->
+
+                    
+
+                        {% for filename, mtime, size in files -%}
+                        <tr>
+                        <td class="text-left"><a class="text-left" href="{{ url_for('download', filename=filename) }}" download>{{ filename }}</a></td>
+                        <!-- <td class="text-left">{{ moment(mtime, local=False).format('DD.MM.YYYY HH:mm') }}</td> -->
+                        <td class="text-left" style="text-align:left;">{{ size | byte_units }}</td>
+                        </tr>
+                        {% endfor -%}
+                    </tbody>
+                </table>
+            </article>
+                
+
+
+<!-- 
+            <table class="tablestyle">
+                {% for filename, mtime, size in files -%}
+                <tr>
+                  <td style=" z-index: 22; pointer-events: auto;"><a style=" z-index: 22; pointer-events: auto;" href="{{ url_for('download', filename=filename) }}" download>{{ filename }}</a></td>
+                  <td>{{ moment(mtime, local=False).format('DD.MM.YYYY HH:mm') }}</td>
+                  <td style="text-align:right;">{{ size | byte_units }}</td>
+                </tr>
+                {% endfor -%}
+            </table>
+ -->
+
+            <script type="text/javascript">
+                (() => {
+                  const elems = document.querySelectorAll('a[href][download]');
+                  elems.forEach(elem => {
+                    elem.addEventListener('click', evt => {
+                      const isDonwload = window.confirm('Would you like to download this file?');
+                      if (!isDonwload) { evt.preventDefault(); }
+                    });
+                  });
+                })();
+            </script>
 
             <ul class="bg-bubbles">
                 <li></li>
