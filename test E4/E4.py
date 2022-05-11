@@ -113,31 +113,6 @@ def all_e4( df=dataFrame ):
 
     plt.show()
 
-def all_in_one( bvp=bvp, eda=eda, hr=hr, ibi=ibi, temp=temp ):
-
-    bvp_x = [ i for i in range( len( bvp[2:] ) ) ]
-    bvp_y = bvp[ 'BVP' ][ 2: ]
-
-    ibi_x = ibi[ 'time' ]
-    ibi_y = ibi[ 'IBI' ]
-
-    eda_x = [ i for i in range( len( eda[ 'EDA' ][2:] ) ) ]
-    eda_y = eda[ 'EDA' ][ 2: ]
-
-    hr_x = [ 1, 2, 3, 4 ]
-    hr_y = [ 1, 2, 3, 4 ]
-
-    temp_x=[1, 2, 3]
-    temp_y=[1, 2, 3]
-
-    plt.plot( bvp_x, bvp_y, color='r', label='BVP' )
-    plt.plot( ibi_x, ibi_y, color='b', label='IBI' )
-    plt.plot( eda_x, eda_y, color='g', label='EDA' )
-    plt.plot( hr_x, hr_y, color='y', label='HR' )
-    plt.plot( temp_x, temp_y, color='b', label='temp' )
-
-    plt.legend()
-    plt.show()
 
 # graph_bvp_ibi()
 # graph_eda()
