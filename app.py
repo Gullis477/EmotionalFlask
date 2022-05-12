@@ -4,6 +4,7 @@ from flask import Flask, render_template, flash, redirect, url_for, request, sen
 import matplotlib.pyplot as plt
 from numpy import result_type
 from werkzeug.utils import secure_filename
+import pandas as pd
 
 from turbo_flask import Turbo #app
 import time
@@ -149,18 +150,15 @@ def before_first_request():
 
 @app.context_processor
 def inject_load():
-    # with open('data.csv', "r") as f1:
-    #     for line in f1:
-    #         last_line = line
-    last_line = [random.random() for _ in range(53)]
+    df = pd.read_csv('csvfiles/SAM_arousal.csv')
+    a_sample = df.sample()
+    tmep = a_sample[a_sample.columns[1:53]]
+    last_line = tmep.iloc[[0]]
     loaded_arousal_model = pickle.load(open('test_arousal_algoritm.sav', 'rb'))
     loaded_valence_model = pickle.load(open('test_valence_algoritm.sav', 'rb'))
-    result_arousal  = classification.classify(last_line,loaded_arousal_model)
-    result_valence  = classification.classify(last_line,loaded_valence_model)
-
-
-    
-    return {'load_data': last_line,'load_emotion':[result_arousal,result_valence]}
+    predicted_arousal = loaded_arousal_model.predict(last_line)
+    predicted_valence = loaded_valence_model.predict(last_line)
+    return {'load_data': last_line,'load_emotion':[predicted_arousal[0],predicted_valence[0]]}
 
 # TURBO
 def update_load():
