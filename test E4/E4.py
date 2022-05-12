@@ -113,6 +113,7 @@ def all_e4( df=dataFrame ):
 
     plt.show()
     plt.savefig( "static/e4.jpg" )
+    plt.savefig( "downloads/e4.jpg")
 
 all_e4()
 # all_in_one()
