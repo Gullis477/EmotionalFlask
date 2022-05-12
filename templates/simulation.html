@@ -7,6 +7,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon2.png') }}">
         <meta charset=“UTF-8”>
+
+
+        <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+        <script defer src="https://pyscript.net/alpha/pyscript.js"></script>    
+        <!-- experiment -->
+        <py-env>
+            - numpy
+            - matplotlib
+            - pandas
+            - paths:
+                - /data.py
+                <!-- - C:\Users\jonat\OneDrive\Documents\BTH\År 2\Systemteknik\testflasken\EmotionalFlask\templates\data.py -->
+        </py-env>
+
+
     </head>
 
     <body>
@@ -49,8 +64,8 @@
         <div class="wrapper">
         
             <!-- <article> -->
-                <h1 style="margin-top: 220px; color: white; margin-left: 20px; font-size: 40px; font-family: Ubuntu, sans-serif;">Simulation</h1>
-                <div id="load" class="load">
+            <h1 style="margin-top: 220px; color: white; margin-left: 20px; font-size: 40px; font-family: Ubuntu, sans-serif;">Simulation</h1>
+                <!-- <div id="load" class="load">
                     <table>
                       <tr>  </tr>
                       <tr>  </tr>
@@ -73,9 +88,17 @@
                     </table>
                     {{ turbo() }}
 
-                  </div>
+                </div> -->
             <!-- </article>     -->
+            <div style="background-color: white; z-index: 20;">
+                <py-script style="color: red;">
+                    print('hello')
+    
+                </py-script>
+    
 
+            </div>
+         
 
 
 
