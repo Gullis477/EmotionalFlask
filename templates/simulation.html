@@ -1,34 +1,19 @@
 <!DOCTYPE html>
 
     <head>
-        <title>Simulation - Emotional IDE</title>
+        <title>Simulation</title>
         
         <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon2.png') }}">
         <meta charset=“UTF-8”>
-
-
-        <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
-        <script defer src="https://pyscript.net/alpha/pyscript.js"></script>    
-        <!-- experiment -->
-        <py-env>
-            - numpy
-            - matplotlib
-            - pandas
-            - paths:
-                - /data.py
-                <!-- - C:\Users\jonat\OneDrive\Documents\BTH\År 2\Systemteknik\testflasken\EmotionalFlask\templates\data.py -->
-        </py-env>
-
-
     </head>
 
     <body>
 
         
-        <header class="header" style="height: 173px;">
-            <h1 style="margin-top: 80px;">Emotional IDE</h1>
+        <header class="header" style="height: 162px;">
+            <h1 style="margin-top: 73px;">Emotional IDE</h1>
             <nav class="nav">
             <ul>
                 <li>
@@ -63,37 +48,27 @@
 
         <div class="wrapper">
         
-            <!-- <article> -->
-            <h1 style="margin-top: 220px; color: white; margin-left: 20px; font-size: 40px; font-family: Ubuntu, sans-serif;">Simulation</h1>
-                <!-- <div id="load" class="load">
+            <article>
+                <h1 style="margin-top: 220px; color: white; margin-left: 20px; font-size: 40px;">Simulation</h1>
+                <div id="load" class="load">
                     <table>
 
                       <tr>EEG</tr>
 
-                      <tr><th>Amplitude:</th>
-                        <td>{{ load_data }}</td>
-                        </tr>
+ 
 
                       <tr><th>Emotion:</th>
                         <td>{{ load_emotion }}</td>
                         <!-- <td id="currentemotion">{{ test_emoztion }}</td> -->
-                        <td id="currentemotion"> sad</td>
+                        
 
                     </tr>
                     </table>
                     {{ turbo() }}
 
-                </div> -->
-            <!-- </article>     -->
-            <div style="background-color: white; z-index: 20;">
-                <py-script style="color: red;">
-                    print('hello')
-    
-                </py-script>
-    
+                  </div>
+            </article>    
 
-            </div>
-         
 
 
             <script  type = "text/javascript">

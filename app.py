@@ -170,7 +170,7 @@ def inject_load():
     elif predicted_arousal == 0 and predicted_valence == 1:
         face = "\U0001F60C"
 
-    return {'load_data': last_line,'load_emotion':face,'test_emotion' : "\U0001F600"}
+    return {'load_emotion':face}
 
 # TURBO
 def update_load():
