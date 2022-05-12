@@ -52,23 +52,18 @@
                 <h1 style="margin-top: 220px; color: white; margin-left: 20px; font-size: 40px;">Simulation</h1>
                 <div id="load" class="load">
                     <table>
-                      <tr>  </tr>
-                      <tr>  </tr>
-                      <tr>  </tr>
-                      <tr>  </tr>
-                      <tr>  </tr>
-                      <tr>  </tr>
-                      <tr>  </tr>
-                      <tr>  </tr>
-                      <tr>  </tr>
+
                       <tr>EEG</tr>
 
                       <tr><th>Amplitude:</th>
                         <td>{{ load_data }}</td>
                         </tr>
 
-                      <tr><th>Arousal:</th>
+                      <tr><th>Emotion:</th>
                         <td>{{ load_emotion }}</td>
+                        <!-- <td id="currentemotion">{{ test_emoztion }}</td> -->
+                        <td id="currentemotion"> sad</td>
+
                     </tr>
                     </table>
                     {{ turbo() }}
@@ -78,17 +73,19 @@
 
 
 
-
-
             <script  type = "text/javascript">
                 
+                let emotion = "";
+
+                setInterval(function () {
+                emotion = document.getElementById("currentemotion").innerHTML;
+                console.log(emotion)
+            
+            } , 1000); 
                 
 
-
-                emotion = "sad";          //lägg in på något sätt att emotion uppdaters automatiskt annars funkar
-                //console.log(emotion);
-
-
+                // {% set emotion = 'sad' %}
+                
                 switch(emotion)
                 {
                     case "happy":
@@ -108,7 +105,7 @@
                         break;
 
                     default:
-                        text = "broken";
+                        text = "";
 
                 }
 
@@ -183,7 +180,7 @@
                 
                 // elem.innerHTML = checksign(newEmotion)
                 // console.log(elem.innerHTML);
-
+            
             </script>
 
             

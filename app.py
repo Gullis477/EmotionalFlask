@@ -86,7 +86,19 @@ def inject_load():
     loaded_valence_model = pickle.load(open('test_valence_algoritm.sav', 'rb'))
     predicted_arousal = loaded_arousal_model.predict(last_line)
     predicted_valence = loaded_valence_model.predict(last_line)
-    return {'load_data': last_line,'load_emotion':[predicted_arousal[0],predicted_valence[0]]}
+    if predicted_arousal == 1 and predicted_valence == 1:
+        face = "\U0001F603"
+
+    elif predicted_arousal == 1 and predicted_valence == 0:
+        face = "\U0001F92F"
+
+    elif predicted_arousal == 0 and predicted_valence == 0:
+        face = "\U0001F62D"
+
+    elif predicted_arousal == 0 and predicted_valence == 1:
+        face = "\U0001F60C"
+
+    return {'load_data': last_line,'load_emotion':face,'test_emotion' : "\U0001F600"}
 
 # TURBO
 def update_load():

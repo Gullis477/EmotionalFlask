@@ -11,11 +11,18 @@ from sklearn.neighbors import KNeighborsClassifier
 
 import pickle
 
-url = "SAM_arousal.csv"
-#names = ['id','alpha_bin','beta_bin','gamma_bin','delta_bin','theta_bin','alpha_beta','alpha_gamma','alpha_delta','alpha_theta','beta_alpha','beta_gamma','beta_delta','beta_theta','gamma_alpha','gamma_beta','gamma_delta','gamma_theta','delta_alpha','delta_beta','delta_gamma','delta_theta','theta_alpha','theta_beta','theta_gamma','theta_delta','min_att,max_att','mean_att_difference','sd_att_difference','min_med','max_med','mean_med_difference','sd_med_difference','mean_SCL','AUC_Phasic','min_peak_amplitude','max_peak_amplitude','mean_phasic_peak','sum_phasic_peak_amplitude','mean_temp','mean_temp_difference,max_temp','max_temp_difference,min_temp','min_temp_difference','difference_BVPpeaks_ampl','mean_BVPpeaks_ampl','min_BVPpeaks_ampl','max_BVPpeaks_ampl','sum_peak_ampl','HR_mean_difference','HR_variance_difference','arousal']
-dataset = read_csv("csvfiles\SAM_arousal.csv")
-subset = dataset[['alpha_bin','beta_bin','gamma_bin','delta_bin','arousal']]
+def emotion_to_number(x):
+    if x == 'low':
+        x = 0
+    else:
+        x = 1
+    return x
 
+
+names = ['id','alpha_bin','beta_bin','gamma_bin','delta_bin','theta_bin','alpha_beta','alpha_gamma','alpha_delta','alpha_theta','beta_alpha','beta_gamma','beta_delta','beta_theta','gamma_alpha','gamma_beta','gamma_delta','gamma_theta','delta_alpha','delta_beta','delta_gamma','delta_theta','theta_alpha','theta_beta','theta_gamma','theta_delta','min_att,max_att','mean_att_difference','sd_att_difference','min_med','max_med','mean_med_difference','sd_med_difference','mean_SCL','AUC_Phasic','min_peak_amplitude','max_peak_amplitude','mean_phasic_peak','sum_phasic_peak_amplitude','mean_temp','mean_temp_difference,max_temp','max_temp_difference,min_temp','min_temp_difference','difference_BVPpeaks_ampl','mean_BVPpeaks_ampl','min_BVPpeaks_ampl','max_BVPpeaks_ampl','sum_peak_ampl','HR_mean_difference','HR_variance_difference','valence']
+dataset = read_csv("csvfiles\SAM_arousal.csv")
+dataset['arousal'] = dataset['arousal'].apply(emotion_to_number)
+print(dataset.shape)
 # Split-out validation dataset
 array = dataset.values
 X = array[:,1:53]
