@@ -112,10 +112,8 @@ def all_e4( df=dataFrame ):
     ax[ 1, 2] .set_title( "Temperature" )
 
     plt.show()
+    plt.savefig( "static/e4.jpg" )
 
-
-# graph_bvp_ibi()
-# graph_eda()
 all_e4()
 # all_in_one()
 
