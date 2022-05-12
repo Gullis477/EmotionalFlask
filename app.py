@@ -13,23 +13,90 @@ import random
 import classification
 import pickle
 
+from flask_moment import Moment
+from datetime import datetime
+
 # initialization
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = r'uploads'
+app.config['DOWNLOAD_FOLDER'] = r'downloads'
+# app.config['MAX_CONTENT_PATH']
 turbo = Turbo(app)
+
 
 # ------------------------------------------------------------------------------
 
 #app funktioner
+
+
+
+def byte_units(value, units=-1):
+    UNITS=('Bytes', 'KB', 'MB', 'GB', 'TB', 'EB', 'ZB', 'YB')
+    i=1
+    value /= 1000.0
+    while value > 1000 and (units == -1 or i < units) and i+1 < len(UNITS):
+        value /= 1000.0
+        i += 1
+    return f'{round(value,3):.3f} {UNITS[i]}'
+
+app.jinja_env.filters.update(byte_units = byte_units)
+moment = Moment(app)
+
+#########################
+try:
+    os.makedirs(app.config['DOWNLOAD_FOLDER'])
+except:
+    pass
+
+def get_files(target):
+    for file in os.listdir(target):
+        path = os.path.join(target, file)
+        if os.path.isfile(path):
+            yield (
+                file,
+                datetime.utcfromtimestamp(os.path.getmtime(path)),
+                os.path.getsize(path)
+            )
+
+
+
+
+@app.route('/download')
+def display_download():
+    # path = 'uploads'
+    # list_of_files = os.listdir(path)
+    
+    files = get_files(app.config['DOWNLOAD_FOLDER'])
+
+    return render_template('download.html', **locals())
+
+
+@app.route('/download/<path:filename>')
+def download(filename):
+    return send_from_directory(
+        app.config['DOWNLOAD_FOLDER'],
+        filename,
+        as_attachment=True
+    )
+    
+    
+##############################
+    
+
+
 
 @app.route("/")
 def home():
     return render_template('index.html')
 
 
+
+
 @app.route("/simulation")
 def simulation():
     return render_template('simulation.html')
+
+
 
 
 @app.route('/upload', methods=['GET', 'POST'])  
@@ -41,17 +108,22 @@ def upload():
     return render_template('upload.html')
 
 
-@app.route('/download')
-def display_download():
-    path = 'uploads'
-    list_of_files = os.listdir(path)
-    return render_template('download.html', list_of_files=list_of_files)
 
 
-@app.route('/download/<thing>')
-def something_file(thing):
-    path="uploads/"+thing
-    return send_file(path, as_attachment= True)
+
+
+
+
+
+# @app.route('/download/<thing>')   outdated
+# def something_file(thing):
+#     path="uploads/"+thing
+#     return send_file(path, as_attachment= True)
+
+
+
+
+
 
 
 

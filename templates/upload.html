@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
     <head>
-        <title>Upload</title>
+        <title>Upload - Emotional IDE</title>
 
         <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -43,29 +43,128 @@
         
             <!-- input bilden från input här, ändra till en csv fil kanske med live graf eller static -->
 
-            <h1 style="margin-top: 220px; color: white; margin-left: 20px; font-size: 40px;">Upload</h1>
+            <h1 style="margin-top: 220px; color: white; margin-left: 20px; font-size: 40px; font-family: Ubuntu, sans-serif;">Upload</h1>
 
            
 
 
-            <form style="margin-top: 20px;" action = "/upload" method = "post" enctype="multipart/form-data">  
-                <input type="file" name="file"  onchange="loadFile(event)" class="foo"/>  
+            <form style="margin-top: 20px;" action="http://localhost:5000/upload"  method = "POST" enctype="multipart/form-data" name="subb">  
+                <input type="file" type="submit" name="file" class="foo"/>  
+                <!-- <input type = "submit"/> -->
+
+
+
+                <div style="margin-left: 250px; margin-top: -50px;">
+                <!-- <button style="z-index: 22;"  type="submit" class="submitbutton">Submit</button> -->
+                <button id="upload" class="upload-btn" type="submit">
+                    <svg class="upload-btn-border" xmlns="http://www.w3.org/2000/svg" width="120px" height="50px" viewBox="0 0 120 50" role="presentation">
+                        <rect x="-2" y="-2" width="124" height="54" rx="27" ry="27" fill="none" stroke="#000" stroke-width="4" stroke-dasharray="0 310" opacity="0" />
+                    </svg>
+                    <span style="z-index: 22;" class="upload-btn-text">Submit</span>
+                </button>
+                </div>
+
             </form>  
+            <!-- action = "/upload" -->
 
 
-
-            <p><img id="output" width="700" style="margin-top: 0px; margin-left: 20px;"/></p>
+            <!-- <p><img id="output" width="700" style="margin-top: 0px; margin-left: 20px;"/></p> -->
 
 
             
-            <script>
+            <!-- <script>
             var loadFile = function(event) {
                 var image = document.getElementById('output');
                 image.src = URL.createObjectURL(event.target.files[0]);
             };
+            </script> -->
+            <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded",function(){
+                let upload = document.getElementById("upload");
+            
+                if (upload) {
+                    let progress = 0,
+                        strokeLen = 310,
+                        startUpload = function(progressRect,elText) {
+                            progress = 0;
+            
+                            let btnText = this.querySelector(elText);
+                            if (btnText)
+                                btnText.innerHTML = "0%";
+                            
+                            this.disabled = true; //fel
+
+
+
+                            this.classList.remove("upload-btn-ready");
+                            this.classList.add("upload-btn-running");
+            
+                            setTimeout(incProgress.bind(this,progressRect,elText),500);
+
+                        },
+                        incProgress = function(progressRect,elText){
+                            let btnProgress = this.querySelector(progressRect),
+                                btnText = this.querySelector(elText);
+            
+                            if (progress < 1) {
+                                if (btnProgress) {
+                                    let strokeVal = progress * strokeLen,
+                                        dashVal = strokeLen - strokeVal;
+                                    btnProgress.setAttribute("stroke-dasharray",`${strokeVal} ${dashVal}`);
+                                    btnProgress.setAttribute("opacity","1");
+                                }
+                                if (btnText) {
+                                    let displayVal = Math.round(progress * 100);
+                                    btnText.innerHTML = `${displayVal}%`;
+                                }
+                                progress += 0.005;
+            
+                                let interval = 17;
+                                setTimeout(incProgress.bind(this,progressRect,elText),interval);
+            
+                            } else {
+                                this.classList.remove("upload-btn-running");
+                                this.classList.add("upload-btn-done");
+            
+                                if (btnProgress)
+                                    btnProgress.setAttribute("stroke-dasharray",`${strokeLen} 0`);
+                                if (btnText)
+                                    btnText.innerHTML = "&#10003;";
+            
+                                let timeout = 1500;
+                                setTimeout(resetUpload.bind(this,progressRect,elText),timeout);
+                            }
+                        },
+                        resetUpload = function(progressRect,elText) {
+                            this.classList.remove("upload-btn-done");
+                            this.classList.add("upload-btn-ready");
+                            this.disabled = false;
+            
+                            let btnProgress = this.querySelector(progressRect),
+                                btnText = this.querySelector(elText);
+            
+                            if (btnProgress) {
+                                btnProgress.setAttribute("stroke-dasharray",`0 ${strokeLen}`);
+                                btnProgress.setAttribute("opacity","0");
+                            }
+                            if (btnText)
+                                btnText.innerHTML = "Submit";
+                                this.form.submit(); //juicer skickar den pronto
+
+                            // location.reload();
+
+                        };
+
+                    upload.addEventListener("click",startUpload.bind(
+                        upload,
+                        ".upload-btn-border rect",
+                        ".upload-btn-text"
+                    ));
+
+                }
+            });
+
             </script>
-
-
     
 
             <ul class="bg-bubbles">
