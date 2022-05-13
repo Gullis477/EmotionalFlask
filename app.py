@@ -94,6 +94,7 @@ def home():
 
 @app.route("/simulation")
 def simulation():
+    # file = pd.read_csv("hrtestdata.csv")
     return render_template('simulation.html')
 
 
