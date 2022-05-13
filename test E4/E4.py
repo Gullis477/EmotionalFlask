@@ -33,50 +33,6 @@ print( dataFrame )
 # ------------------------------------------------------------------------------------------------
 # Graphs 
 
-def graph_bvp_ibi( bvp=bvp, ibi=ibi ):
-    '''Should also contain HR'''
-    
-    bvp_x = [ i for i in range( len( bvp[2:] ) ) ]
-    bvp_y = bvp[ 'BVP' ][ 2: ]
-
-    ibi_x = ibi[ 'time' ]
-    ibi_y = ibi[ 'IBI' ]
-
-
-    fig, ibi_ax = plt.subplots()
-    color_ibi = 'tab:blue'
-
-    ibi_ax.set_xlabel( 'time' )
-    ibi_ax.set_ylabel( 'IBI' )
-    ibi_ax.plot( ibi_x, ibi_y, color=color_ibi )
-    ibi_ax.tick_params( axis='y', labelcolor=color_ibi )
-
-    bvp_ax = ibi_ax.twinx() #allows second ax
-    color_bvp = 'tab:red'
-    bvp_ax.set_ylabel( 'BVP', color=color_bvp )
-    bvp_ax.grid()
-    bvp_ax.plot( bvp_x, bvp_y, color=color_bvp )
-    
-    bvp_ax.tick_params( axis='y', labelcolor=color_bvp )
-
-    fig.tight_layout()
-    plt.show()
-
-
-
-def graph_eda( eda=eda ):
-    eda_x = [ i for i in range( len( eda[ 'EDA' ][2:] ) ) ]
-    eda_y = eda[ 'EDA' ][ 2: ]
-
-    fig, eda_ax = plt.subplots()
-    color_eda="tab:green"
-    eda_ax.set_ylabel( "EDA" )
-    eda_ax.grid()
-    eda_ax.plot( eda_x, eda_y, color=color_eda )
-    plt.show()
-
-
-
 def all_e4( df=dataFrame ):
 
     bvp_x = [ i for i in range( len( df[2:] ) ) ]
@@ -110,11 +66,58 @@ def all_e4( df=dataFrame ):
 
     ax[ 1, 2 ].plot( temp_x, temp_y, label='Temperature' )
     ax[ 1, 2] .set_title( "Temperature" )
+    
+    plt.savefig( "static/static_e4.jpg" )
+    plt.savefig( "downloads/e4.jpg")
 
     plt.show()
-    plt.savefig( "static/e4.jpg" )
-    plt.savefig( "downloads/e4.jpg")
 
 all_e4()
 # all_in_one()
+
+# ------------------------------------------------------------------------------------------------
+
+# def graph_bvp_ibi( bvp=bvp, ibi=ibi ):
+#     '''Should also contain HR'''
+    
+#     bvp_x = [ i for i in range( len( bvp[2:] ) ) ]
+#     bvp_y = bvp[ 'BVP' ][ 2: ]
+
+#     ibi_x = ibi[ 'time' ]
+#     ibi_y = ibi[ 'IBI' ]
+
+
+#     fig, ibi_ax = plt.subplots()
+#     color_ibi = 'tab:blue'
+
+#     ibi_ax.set_xlabel( 'time' )
+#     ibi_ax.set_ylabel( 'IBI' )
+#     ibi_ax.plot( ibi_x, ibi_y, color=color_ibi )
+#     ibi_ax.tick_params( axis='y', labelcolor=color_ibi )
+
+#     bvp_ax = ibi_ax.twinx() #allows second ax
+#     color_bvp = 'tab:red'
+#     bvp_ax.set_ylabel( 'BVP', color=color_bvp )
+#     bvp_ax.grid()
+#     bvp_ax.plot( bvp_x, bvp_y, color=color_bvp )
+    
+#     bvp_ax.tick_params( axis='y', labelcolor=color_bvp )
+
+#     fig.tight_layout()
+#     plt.show()
+
+
+
+# def graph_eda( eda=eda ):
+#     eda_x = [ i for i in range( len( eda[ 'EDA' ][2:] ) ) ]
+#     eda_y = eda[ 'EDA' ][ 2: ]
+
+#     fig, eda_ax = plt.subplots()
+#     color_eda="tab:green"
+#     eda_ax.set_ylabel( "EDA" )
+#     eda_ax.grid()
+#     eda_ax.plot( eda_x, eda_y, color=color_eda )
+#     plt.show()
+
+
 
