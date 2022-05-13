@@ -24,10 +24,14 @@ temp =  pd.DataFrame( read_csv( mapp + "TEMP.csv" ) )    #
 
 bvp.columns =   { 'BVP' }
 ibi.columns =   { 'time', 'IBI' }
-eda.columns = { 'EDA' }
+eda.columns =   { 'EDA' }
+hr.columns  =   { 'HR' }
+temp.columns=   { 'TEMP' }
 
-frames = [ bvp, eda, hr, ibi, temp ]
+frames = [ bvp, eda, hr, ibi, hr, temp ]
 dataFrame = pd.concat( frames, axis=0, join="outer", keys=None )
+
+dataFrame.to_csv( 'uploads/e4.csv', sep=',' )
 print( dataFrame )
 
 # ------------------------------------------------------------------------------------------------
@@ -35,20 +39,20 @@ print( dataFrame )
 
 def all_e4( df=dataFrame ):
 
-    bvp_x = [ i for i in range( len( df[2:] ) ) ]
+    bvp_x = [ i for i  in range( len( df['BVP'][2:] ) )  if not None ]
     bvp_y = df[ 'BVP' ][ 2: ]
 
     ibi_x = df[ 'time' ]
     ibi_y = df[ 'IBI' ]
 
-    eda_x = [ i for i in range( len( df[ 'EDA' ][2:] ) ) ]
+    eda_x = [ i for i in range( len( df[ 'EDA' ][ 2: ] ) ) ]
     eda_y = df[ 'EDA' ][ 2: ]
 
-    hr_x = [ 1, 2, 3, 4 ]
-    hr_y = [ 1, 2, 3, 4 ]
+    hr_x = [ i for i in range( len( df[ 'HR' ][ 3: ] ) ) ]
+    hr_y = df[ 'HR' ][ 3: ]
 
-    temp_x=[1, 2, 3]
-    temp_y=[1, 2, 3]
+    temp_x=[i for i in range( len( df[ 'TEMP' ][ 2: ] ) ) if not None ]
+    temp_y=df[ 'TEMP' ][ 2: ]
 
     fig, ax = plt.subplots( 2, 3 )
 
@@ -60,13 +64,15 @@ def all_e4( df=dataFrame ):
 
     ax[ 1, 0 ].plot( eda_x, eda_y, label='EDA' )
     ax[ 1, 0 ].set_title( "EDA" )
+    ax[ 1, 0 ].set_ylim( bottom=0.2, top=0.6 )
 
     ax[ 1, 1 ].plot( hr_x, hr_y, label='HR' )
     ax[ 1, 1 ].set_title( "HR")
 
     ax[ 1, 2 ].plot( temp_x, temp_y, label='Temperature' )
-    ax[ 1, 2] .set_title( "Temperature" )
-    
+    ax[ 1, 2 ].set_title( "Temperature" )
+    ax[ 1, 2 ].set_ylim( bottom =30, top=43 )
+
     plt.savefig( "static/static_e4.jpg" )
     plt.savefig( "downloads/e4.jpg")
 
