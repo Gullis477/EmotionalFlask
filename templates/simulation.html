@@ -7,13 +7,32 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon2.png') }}">
         <meta charset=“UTF-8”>
+
+
+        <!-- <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+        <script defer src="https://pyscript.net/alpha/pyscript.js"></script>   -->
+        <script src=" https://cdnjs.cloudflare.com/ajax/libs/d3/4.9.1/d3.min.js"></script>
+        <!-- experiment -->
+        <!-- <py-env>
+    - numpy
+    - matplotlib
+    - pandas -->
+            <!-- - paths:
+                - /data.py -->
+                <!-- - C:\Users\jonat\OneDrive\Documents\BTH\År 2\Systemteknik\testflasken\EmotionalFlask\templates\data.py -->
+        <!-- </py-env> -->
+
+        <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/min/moment.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.6.0"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-streaming@1.8.0"></script>
     </head>
 
     <body>
 
         
-        <header class="header" style="height: 162px;">
-            <h1 style="margin-top: 73px;">Emotional IDE</h1>
+        <header class="header" style="height: 200px;">
+            <h1 style="margin-top: 80px;">Emotional IDE</h1>
             <nav class="nav">
             <ul>
                 <li>
@@ -66,8 +85,226 @@
                     </table>
                     {{ turbo() }}
 
-                  </div>
-            </article>    
+                </div> -->
+            <!-- </article>     -->
+
+
+<!-- 
+            <form>
+                <button type='button' id="update">Update</button>
+            </form>
+            <span style="z-index: 20;" id="canvas"></span> -->
+
+
+
+
+            <div class="chart" style="height: 10%; width: 70%">
+                <canvas id="myChart"></canvas>
+            </div>
+
+
+            <!-- <p style="display: none;">
+                <button id="randomizeData">Randomize Data</button>
+                <button id="addDataset">Add Dataset</button>
+                <button id="removeDataset">Remove Dataset</button>
+                <button id="addData">Add Data</button>
+            </p> -->
+
+            <h1 style="margin-top: 600px; color: white; margin-left: 20px; font-size: 40px; font-family: Ubuntu, sans-serif;">Heatmap</h1>
+
+
+            <img id="heat" class="heat" src="{{ url_for('static', filename='heatmap.png') }}"/>
+
+            <script type="text/javascript">
+
+            
+            setInterval(function () {
+                document.getElementById("heat").src="{{ url_for('static', filename='heatmap.png') }}";
+                            console.log("funkar");
+
+            
+            } , 5000);  
+            </script>
+
+
+            <script type="text/javascript">
+
+
+          
+            var chartColors = {
+                red: 'rgb(255, 99, 132)',
+                orange: 'rgb(255, 159, 64)',
+                yellow: 'rgb(255, 205, 86)',
+                green: 'rgb(75, 192, 192)',
+                blue: 'rgb(54, 162, 235)',
+                purple: 'rgb(153, 102, 255)',
+                grey: 'rgb(201, 203, 207)'
+            };
+
+            function randomScalingFactor() {
+                return (Math.random() > 0.5 ? 2.0 : 1.0) * Math.round(Math.random() * 100);
+            }
+
+            function onRefresh(chart) {
+                chart.config.data.datasets.forEach(function(dataset) {
+                    dataset.data.push({
+                        x: Date.now(),
+                        y: randomScalingFactor()
+                    });
+                });
+            }
+
+            var color = Chart.helpers.color;
+            var config = {
+                type: 'line',
+                data: {
+                    datasets: [
+                    //     {
+                    //     label: 'Dataset 1 (linear interpolation)',
+                    //     backgroundColor: chartColors.red,
+                    //     borderColor: chartColors.red,
+                    //     fill: false,
+                    //     lineTension: 0,
+                    //     borderDash: [8, 4],
+                    //     data: []
+                    // }
+                    {
+                        label: 'HR (E4)',
+                        backgroundColor: chartColors.blue,
+                        borderColor: chartColors.blue,
+                        fill: false,
+                        cubicInterpolationMode: 'monotone',
+                        data: [],
+                        fontSize: 18
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Live data',
+                        fontColor: "white",
+                        fontSize: 18
+                    },
+                    scales: {
+                        xAxes: [{
+                            type: 'realtime',
+                            fontColor: "white",
+                            fontSize: 18,
+                            realtime: {
+                                duration: 20000,
+                                refresh: 1000,
+                                delay: 2000,
+                                onRefresh: onRefresh
+                            }
+                        }],
+                        yAxes: [{
+                            type: 'linear',
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Heartrate',
+                                fontColor: "white",
+                                fontSize: 18
+
+
+                            }
+                        }]
+                    },
+                    tooltips: {
+                        mode: 'nearest',
+                        intersect: false
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: false
+                    },
+                    plugins: {
+                        datalabels: {
+                            backgroundColor: function(context) {
+                                return context.dataset.backgroundColor;
+                            },
+                            borderRadius: 4,
+                            clip: true,
+                            color: 'white',
+                            font: {
+                                weight: 'bold'
+                            },
+                            formatter: function(value) {
+                                return value.y;
+                            }
+                        }
+                    }
+                }
+            };
+
+            window.onload = function() {
+                var ctx = document.getElementById('myChart').getContext('2d');
+                window.myChart = new Chart(ctx, config);
+            };
+
+            document.getElementById('randomizeData').addEventListener('click', function() {
+                config.data.datasets.forEach(function(dataset) {
+                    dataset.data.forEach(function(dataObj) {
+                        dataObj.y = randomScalingFactor();
+                    });
+                });
+
+                window.myChart.update();
+            });
+
+            var colorNames = Object.keys(chartColors);
+            document.getElementById('addDataset').addEventListener('click', function() {
+                var colorName = colorNames[config.data.datasets.length % colorNames.length];
+                var newColor = chartColors[colorName];
+                var newDataset = {
+                    label: 'Dataset ' + (config.data.datasets.length + 1),
+                    backgroundColor: newColor,
+                    borderColor: newColor,
+                    fill: false,
+                    lineTension: 0,
+                    data: []
+                };
+
+                config.data.datasets.push(newDataset);
+                window.myChart.update();
+            });
+
+            document.getElementById('removeDataset').addEventListener('click', function() {
+                config.data.datasets.pop();
+                window.myChart.update();
+            });
+
+            document.getElementById('addData').addEventListener('click', function() {
+                onRefresh(window.myChart);
+                window.myChart.update();
+            });
+
+
+
+
+
+
+
+            </script>
+
+
+            <!-- <div id="plot" ></div> -->
+            <!-- <py-script output="plot">
+
+            import pandas as pd
+            import matplotlib.pyplot as plt
+            x = np.random.randn(10)
+            y = np.random.randn(10)
+            fig, ax = plt.subplots()
+            ax.plot(x, y)
+            fig
+
+           
+
+            </py-script> -->
+    
+
+         
 
             <article>
                 

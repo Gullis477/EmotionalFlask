@@ -10,7 +10,7 @@
   top: 0%;
   left: 0;
   width: 100%;
-  height: 1100px;   /*fixa precis höjd */
+  height: 1800px;   /*fixa precis höjd */
   overflow: hidden;
   pointer-events: none;
 }
@@ -57,7 +57,8 @@ img {
   background-color: rgba(255, 255, 255, 0.15);
   bottom: -300px;
   -webkit-animation: square 5s infinite;
-  animation: square 40s infinite;
+  animation: square 40s infinite; 
+  /* 40 sec */
   -webkit-transition-timing-function: linear;
   transition-timing-function: linear;
 }
@@ -136,8 +137,8 @@ img {
             transform: translateY(0);
   }
   100% {
-    -webkit-transform: translateY(1200px) rotate(600deg);
-            transform: translateY(-1200px) rotate(600deg);
+    -webkit-transform: translateY(1800px) rotate(600deg);
+            transform: translateY(-1800px) rotate(600deg);
   }
 }
 @keyframes square {
@@ -146,8 +147,8 @@ img {
             transform: translateY(0);
   }
   100% {
-    -webkit-transform: translateY(1200px) rotate(600deg);
-            transform: translateY(-1200px) rotate(600deg);
+    -webkit-transform: translateY(1800px) rotate(600deg);
+            transform: translateY(-1800px) rotate(600deg);
   }
 }
 
@@ -814,4 +815,59 @@ article td.text-center {
 
 article td.text-right {
   text-align: right;
+}
+
+/* 
+svg {
+  background-color: aliceblue;
+} */
+
+
+
+
+
+
+
+
+* { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; box-sizing: border-box;}
+body {
+    /* height: 100vh;
+    min-height: 100vh;
+    margin: 0; */
+    /* position: relative; */
+    font-family: 'Open Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
+                    
+    background: linear-gradient(to right bottom, #B568DC, #4986CF);
+    
+    background: #333 url(https://hfhf.uk/uploads/bg_image_1.jpg) no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+
+    background-image: linear-gradient(to top, #9d50bb, #6e48aa);
+    background-attachment: fixed; 
+   
+
+    /* background: #141126; */
+}   
+
+.myChart {
+height: 300px;
+}
+
+.chart {
+  pointer-events: none;
+  margin-top: -30px;
+}
+
+#myChart {
+  pointer-events: auto;
+  z-index: 20;
+}
+
+.heat {
+  margin-top: -0px;
+  margin-left: 20px;
 }
