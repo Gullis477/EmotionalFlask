@@ -9,23 +9,14 @@
         <meta charset=“UTF-8”>
 
 
-        <!-- <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
-        <script defer src="https://pyscript.net/alpha/pyscript.js"></script>   -->
+       
         <script src=" https://cdnjs.cloudflare.com/ajax/libs/d3/4.9.1/d3.min.js"></script>
-        <!-- experiment -->
-        <!-- <py-env>
-    - numpy
-    - matplotlib
-    - pandas -->
-            <!-- - paths:
-                - /data.py -->
-                <!-- - C:\Users\jonat\OneDrive\Documents\BTH\År 2\Systemteknik\testflasken\EmotionalFlask\templates\data.py -->
-        <!-- </py-env> -->
-
         <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/min/moment.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
         <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.6.0"></script>
         <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-streaming@1.8.0"></script>
+        {{ turbo() }}
+
     </head>
 
     <body>
@@ -48,17 +39,16 @@
                     <p><a href ="http://127.0.0.1:5000">Home </a></p>
                 </li>
 
-                <body>
-                    
-                    <!-- {% include "turbo_template.html" %}
-                    {% block content %}{% endblock %} -->
-                </body>
-    
+        
 
             </ul>
 
             </nav>
-            <p id="emoji" class="emojis"></p>    <!--emoji, make function to chnage depending on emotion -->
+            <!-- <p id="emoji" class="emojis"></p>     -->
+            <!--emoji, make function to chnage depending on emotion -->
+            <div id="load" class="load">                
+                <p class="kladd" style="background: transparent;">{{ load_emotion }}</p>
+            </div>
 
         </header>
 
@@ -68,32 +58,10 @@
         <div class="wrapper">
         
             <article>
-                <h1 style="margin-top: 220px; color: white; margin-left: 20px; font-size: 40px;">Simulation</h1>
-                <div id="load" class="load">
-                    <table>
+                <h1 style="margin-top: 210px; color: white; margin-left: 20px; font-size: 40px; font-family: Ubuntu, sans-serif;">Simulation</h1>
+              
+            </article>    
 
-                      <tr>EEG</tr>
-
- 
-
-                      <tr><th>Emotion:</th>
-                        <td>{{ load_emotion }}</td>
-                        <!-- <td id="currentemotion">{{ test_emoztion }}</td> -->
-                        
-
-                    </tr>
-                    </table>
-                    {{ turbo() }}
-
-                </div> -->
-            <!-- </article>     -->
-
-
-<!-- 
-            <form>
-                <button type='button' id="update">Update</button>
-            </form>
-            <span style="z-index: 20;" id="canvas"></span> -->
 
 
 
@@ -103,14 +71,8 @@
             </div>
 
 
-            <!-- <p style="display: none;">
-                <button id="randomizeData">Randomize Data</button>
-                <button id="addDataset">Add Dataset</button>
-                <button id="removeDataset">Remove Dataset</button>
-                <button id="addData">Add Data</button>
-            </p> -->
 
-            <h1 style="margin-top: 600px; color: white; margin-left: 20px; font-size: 40px; font-family: Ubuntu, sans-serif;">Heatmap</h1>
+            <h1 style="margin-top: 500px; color: white; margin-left: 20px; font-size: 40px; font-family: Ubuntu, sans-serif;">Heatmap</h1>
 
 
             <img id="heat" class="heat" src="{{ url_for('static', filename='heatmap.png') }}"/>
@@ -120,7 +82,6 @@
             
             setInterval(function () {
                 document.getElementById("heat").src="{{ url_for('static', filename='heatmap.png') }}";
-                            console.log("funkar");
 
             
             } , 5000);  
@@ -159,15 +120,6 @@
                 type: 'line',
                 data: {
                     datasets: [
-                    //     {
-                    //     label: 'Dataset 1 (linear interpolation)',
-                    //     backgroundColor: chartColors.red,
-                    //     borderColor: chartColors.red,
-                    //     fill: false,
-                    //     lineTension: 0,
-                    //     borderDash: [8, 4],
-                    //     data: []
-                    // }
                     {
                         label: 'HR (E4)',
                         backgroundColor: chartColors.blue,
@@ -288,32 +240,6 @@
             </script>
 
 
-            <!-- <div id="plot" ></div> -->
-            <!-- <py-script output="plot">
-
-            import pandas as pd
-            import matplotlib.pyplot as plt
-            x = np.random.randn(10)
-            y = np.random.randn(10)
-            fig, ax = plt.subplots()
-            ax.plot(x, y)
-            fig
-
-           
-
-            </py-script> -->
-    
-
-         
-
-            <article>
-                
-                <tr>E4</tr>
-                <img style="margin: top -200px;" src="{{ url_for('static', filename='static_e4.jpg')}}">
-                
-
-            </article>    
-
 
             <script  type = "text/javascript">
                 
@@ -326,7 +252,6 @@
             } , 1000); 
                 
 
-                // {% set emotion = 'sad' %}
                 
                 switch(emotion)
                 {
@@ -354,74 +279,7 @@
                 setInterval(function () {
                 document.getElementById("emoji").innerHTML = text;} , 1000);                      //updateras varje sekund
 
-                //document.getElementById("emoji").innerHTML = text;
-
-
-                // function checksign(emotion) {
-
-                // }
-
-
-                //     if (emotion = "happy")
-                //     {
-                //         // elem.innerHTML.replace = "&#x1F600;";
-                //         console.log("1");
-                //         return "&#x1F600;";
-                //     }
-                //     else if (emotion = "sad") {
-                //         // elem.innerHTML.replace = "&#x1F62A;";
-                //         console.log("2");
-
-                //         return "&#x1F62A;";
-                //     }
-                //     else if (emotion = "stressed") {
-                //         // elem.innerHTML.replace = "&#x1F632;";
-                //         console.log("3");
-
-                //         return "&#x1F632;";
-                //     }
-                //     else if (emotion = "angry") {
-                //         // elem.innerHTML = '<p id="emoji" style="font-size: 8em;">&#x1F621;</p>';
-                //         console.log("4");
-
-                //         return "&#x1F621;";
-                //     }
-                // }
-
-                // let element = document.querySelector('#emoji');
-
-                
-
-                // replacement = checksign(newEmotion);
-                // console.log(replacement);
-                // replacement = "&#x1F621;";
-                // console.log(replacement);
-                // element.innerHTML = replacement;
-
-            
-
-                //     newEmotion = 'stressed';
-                //     let replacement = checksign(newEmotion);
-                //     replacement = "&#x1F632;";
-                //     console.log(replacement);
-
-                //     let element = document.getElementById('emoji');
-                // //    element.innerHTML = '<h2>Section replaced dynamically!!</h2>';
-                //     // element.innerHTML = '<p>'replacement'</p>';
-                //     element.appendChild(replacement);
-
-                        // få newEmotion med python på ett smidigt sätt här kanske turbo flask
-                    // let elem = document.getElementById('emoji');
-
-                    // newEmotion = "angry";
-                    // console.log(newEmotion);
-
-                
-
-                
-                
-                // elem.innerHTML = checksign(newEmotion)
-                // console.log(elem.innerHTML);
+               
             
             </script>
 

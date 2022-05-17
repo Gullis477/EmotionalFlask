@@ -175,7 +175,7 @@ def inject_load():
 
 # TURBO
 def update_load():
-    with app.app_context(): #Fattar inte vad app_context() är
+    with app.app_context(): #app_context()
         while True:
             time.sleep(2)
             turbo.push(turbo.replace(render_template('turbo_template.html'), 'load')) #Tror att denna raden uppdaterar elementet med id 'load' i templated loadavg.html

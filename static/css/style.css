@@ -587,24 +587,6 @@ body {
 
 
 
-/* body,html {
-  margin: 0;
-  font: bold 14px/1.4 'Open Sans', arial, sans-serif;
-  background: #000;
-} */
-/* ul { 
-  margin: 150px auto 0; 
-  padding: 0; 
-  list-style: none; 
-  display: table;
-  width: 600px;
-  text-align: center;
-} */
-/* li { 
-  display: table-cell; 
-  position: relative; 
-  padding: 15px 0;
-} */
 p a {
   color: #fff;
   text-transform: uppercase;  
@@ -653,7 +635,6 @@ p a:hover:after {
 
 
 
-/* z-index: 22; pointer-events: auto; */
 
 
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100);
@@ -669,13 +650,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* div.table-title {
-  display: block;
-  margin: auto;
-  max-width: 600px;
-  padding:5px;
-  width: 100%;
-} */
+
 
 article .table-title h3 {
 
@@ -817,10 +792,6 @@ article td.text-right {
   text-align: right;
 }
 
-/* 
-svg {
-  background-color: aliceblue;
-} */
 
 
 
@@ -870,4 +841,12 @@ height: 300px;
 .heat {
   margin-top: -0px;
   margin-left: 20px;
+}
+
+
+.kladd {
+  float: left;
+  margin-top: -100px;
+  margin-left: 1200px;
+  font-size: 60px;
 }
