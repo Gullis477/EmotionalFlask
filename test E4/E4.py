@@ -5,6 +5,11 @@ import numpy as np
 
 import math
 
+from io import StringIO
+
+import zipfile
+from zipfile import ZipFile, Path
+
 import matplotlib.pyplot as plt 
 from mpl_toolkits.mplot3d import *
 
@@ -15,31 +20,54 @@ from ipywidgets import interact
 # ------------------------------------------------------------------------------------------------
 # Import CSV as a single dataframe
 
-mapp =  "csvfiles/E4.try/"
-bvp =   pd.DataFrame( read_csv( mapp + "BVP.csv" ) )     #
-eda =   pd.DataFrame( read_csv( mapp + "EDA.csv" ) )     #
-hr =    pd.DataFrame( read_csv( mapp + "HR.csv" ) )      # r2 = sample rate in Hz
-ibi =   pd.DataFrame( read_csv( mapp + "IBI.csv" ) )     # col1 = time, col2 = durations in sec
-temp =  pd.DataFrame( read_csv( mapp + "TEMP.csv" ) )    # 
+# mapp    =   "csvfiles/E4.try/"
+# bvp     =   pd.DataFrame( read_csv( mapp + "BVP.csv" ) )     #
+# eda     =   pd.DataFrame( read_csv( mapp + "EDA.csv" ) )     #
+# hr      =   pd.DataFrame( read_csv( mapp + "HR.csv" ) )      # r2 = sample rate in Hz
+# ibi     =   pd.DataFrame( read_csv( mapp + "IBI.csv" ) )     # col1 = time, col2 = durations in sec
+# temp    =   pd.DataFrame( read_csv( mapp + "TEMP.csv" ) )    # 
 
-bvp.columns =   { 'BVP' }
-ibi.columns =   { 'time', 'IBI' }
-eda.columns =   { 'EDA' }
-hr.columns  =   { 'HR' }
-temp.columns=   { 'TEMP' }
+
+# pack = zipfile( 'E4.py' )
+# pack.extractall()
+path    = "uploads/e4.zip"
+mapp    = "E4.1/"
+
+bvp_z   = Path( path, at = mapp + "BVP.csv" )
+bvp     = pd.read_csv( StringIO( bvp_z.read_text() ) )
+
+eda_z   = Path( path, at = mapp + "EDA.csv" )
+eda     = pd.read_csv( StringIO( eda_z.read_text() ) )
+
+hr_z    = Path( path, at = mapp + "HR.csv" )
+hr      = pd.read_csv( StringIO( hr_z.read_text() ) )
+
+ibi_z   = Path( path, at = mapp + "IBI.csv" )
+ibi     = pd.read_csv( StringIO( ibi_z.read_text() ) )
+
+temp_z  = Path( path, at = mapp + "TEMP.csv" )
+temp    = pd.read_csv( StringIO( temp_z.read_text() ) )
+
+bvp.columns = { 'BVP' }
+eda.columns = { 'EDA' }
+hr.columns  = { 'HR' }
+ibi.columns = { 'time', 'IBI' }
+temp.columns= { 'TEMP' }
 
 frames = [ bvp, eda, hr, ibi, hr, temp ]
-dataFrame = pd.concat( frames, axis=0, join="outer", keys=None )
+dataFrame = pd.concat( frames )
 
 dataFrame.to_csv( 'uploads/e4.csv', sep=',' )
 print( dataFrame )
+
+
 
 # ------------------------------------------------------------------------------------------------
 # Graphs 
 
 def all_e4( df=dataFrame ):
 
-    bvp_x = [ i for i  in range( len( df['BVP'][2:] ) )  if not None ]
+    bvp_x = [ i for i  in range( len( df['BVP'][2:] ) ) ]
     bvp_y = df[ 'BVP' ][ 2: ]
 
     ibi_x = df[ 'time' ]
@@ -51,7 +79,7 @@ def all_e4( df=dataFrame ):
     hr_x = [ i for i in range( len( df[ 'HR' ][ 3: ] ) ) ]
     hr_y = df[ 'HR' ][ 3: ]
 
-    temp_x=[i for i in range( len( df[ 'TEMP' ][ 2: ] ) ) if not None ]
+    temp_x=[i for i in range( len( df[ 'TEMP' ][ 2: ] ) ) ]
     temp_y=df[ 'TEMP' ][ 2: ]
 
     fig, ax = plt.subplots( 2, 3 )
@@ -79,7 +107,6 @@ def all_e4( df=dataFrame ):
     plt.show()
 
 all_e4()
-# all_in_one()
 
 # ------------------------------------------------------------------------------------------------
 
