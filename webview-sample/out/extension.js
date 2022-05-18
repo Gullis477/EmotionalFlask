@@ -10,7 +10,7 @@ const cats = {
 function activate(context) {
     context.subscriptions.push(vscode.commands.registerCommand('eide.start', () => {
         CatCodingPanel.createOrShow(context.extensionUri);
-        vscode.window.showInformationMessage('Current emotion: ' + '{emotion variable}'); //change emotion varibe to emotion value
+        vscode.window.showInformationMessage('Starting extension'); //change emotion varibe to emotion value
     }));
     context.subscriptions.push(vscode.commands.registerCommand('eide.doRefactor', () => {
         if (CatCodingPanel.currentPanel) {
