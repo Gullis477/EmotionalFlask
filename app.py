@@ -13,6 +13,8 @@ import random
 import classification
 import pickle
 import test_E4.E4
+from Eyetracker import GazepointAPI
+
 
 from flask_moment import Moment
 from datetime import datetime
@@ -87,12 +89,18 @@ def download(filename):
 
 
 
-@app.route("/")
+@app.route("/",methods=['GET', 'POST'])
 def home():
-    return render_template('index.html')
+        i = 0
+        if (request.method == 'POST'):
+            if (request.form.get('Start') == 'Start'):
+                GazepointAPI.run()
+                
+              
+      
+        return render_template('index.html')
 
-
-
+ 
 
 @app.route("/simulation")
 def simulation():
@@ -161,19 +169,23 @@ def inject_load():
     loaded_valence_model = pickle.load(open('test_valence_algoritm.sav', 'rb'))
     predicted_arousal = loaded_arousal_model.predict(last_line)
     predicted_valence = loaded_valence_model.predict(last_line)
+    coffe = ''
     if predicted_arousal == 1 and predicted_valence == 1:
         face = "\U0001F603"
 
     elif predicted_arousal == 1 and predicted_valence == 0:
         face = "\U0001F92F"
+        coffe = u"\u2615"
+
 
     elif predicted_arousal == 0 and predicted_valence == 0:
         face = "\U0001F62D"
 
     elif predicted_arousal == 0 and predicted_valence == 1:
         face = "\U0001F60C"
+    
 
-    return {'load_emotion':face}
+    return {'load_emotion':face,'load_break': coffe}
 
 # TURBO
 def update_load():
