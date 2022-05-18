@@ -7,8 +7,6 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import matplotlib.cm as cm
 from scipy.ndimage import gaussian_filter
-
-
 def plotter(x,y):
     "Saves a heatmap as jpg"
     temp=[]
