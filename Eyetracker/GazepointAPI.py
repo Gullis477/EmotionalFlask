@@ -1,5 +1,5 @@
 from doctest import IGNORE_EXCEPTION_DETAIL
-from heatmap import plotter
+from Eyetracker import heatmap
 import socket
 import time
 
@@ -92,7 +92,7 @@ def collect_data():
 def run(): 
     "Main function to call"
     x_pos,y_pos = collect_data()
-    plotter(x_pos,y_pos)
+    heatmap.plotter(x_pos,y_pos)
 
 
 
