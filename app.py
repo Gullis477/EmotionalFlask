@@ -12,6 +12,7 @@ import threading
 import random
 import classification
 import pickle
+import test_E4.E4
 
 from flask_moment import Moment
 from datetime import datetime
@@ -65,6 +66,7 @@ def get_files(target):
 def display_download():
     # path = 'uploads'
     # list_of_files = os.listdir(path)
+    test_E4.E4.all_e4()     #skickar e4 bild till mapp
     
     files = get_files(app.config['DOWNLOAD_FOLDER'])
 
