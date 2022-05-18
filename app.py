@@ -90,21 +90,13 @@ def home():
         i = 0
         if (request.method == 'POST'):
             if (request.form.get('Start') == 'Start'):
-                run_tracker()
+                GazepointAPI.run()
                 
               
       
         return render_template('index.html')
 
  
-     
-def run_tracker():
-    if GazepointAPI.run() == False:
-        time.sleep(2)
-        run_tracker()
-    else:
-        return
-
 
 @app.route("/simulation")
 def simulation():
