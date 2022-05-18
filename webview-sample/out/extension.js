@@ -3,9 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.activate = void 0;
 const vscode = require("vscode");
 const cats = {
-    'Coding Cat': 'https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif',
-    'Compiling Cat': 'https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif',
-    'Testing Cat': 'https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif'
+    'Coding EIDE': 'https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif',
+    'Compiling EIDE': 'https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif',
+    'Testing EIDE': 'https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif'
 };
 function activate(context) {
     context.subscriptions.push(vscode.commands.registerCommand('catCoding.start', () => {
@@ -103,14 +103,14 @@ class CatCodingPanel {
         // Vary the webview's content based on where it is located in the editor.
         switch (this._panel.viewColumn) {
             case vscode.ViewColumn.Two:
-                this._updateForCat(webview, 'Compiling Cat');
+                this._updateForCat(webview, 'Compiling EIDE');
                 return;
             case vscode.ViewColumn.Three:
-                this._updateForCat(webview, 'Testing Cat');
+                this._updateForCat(webview, 'Testing EIDE');
                 return;
             case vscode.ViewColumn.One:
             default:
-                this._updateForCat(webview, 'Coding Cat');
+                this._updateForCat(webview, 'Coding EIDE');
                 return;
         }
     }
