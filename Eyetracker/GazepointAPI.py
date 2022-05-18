@@ -88,9 +88,14 @@ def collect_data():
     # Gazepoint Port
     PORT = 4242
     ADDRESS = (HOST, PORT)
+    stri = " "
     povx=[]
     povy=[]
     try:
+        HOST = '127.0.0.1'
+    # Gazepoint Port
+        PORT = 4242
+        ADDRESS = (HOST, PORT)
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect(ADDRESS)
         s.send(str.encode('<SET ID="ENABLE_SEND_CURSOR" STATE="1" />\r\n')) # Start or stop the streaming of data from the server to client.
@@ -103,23 +108,23 @@ def collect_data():
         #FPOGV = 1 if valid, 0 if not
         #len(str)=133 per dataset
 
-        str = " "
-        i = 0
+       
+       
 
-        while 79800 > len(str): #Runs for approx 10 sec and collects 600 x and y coordinates
+        while 79800 > len(stri): #Runs for approx 10 sec and collects 600 x and y coordinates
             rxdat = s.recv(1024)   
             if "ENABLE" not in bytes.decode(rxdat):
-                str = str + bytes.decode(rxdat) 
+                stri = stri + bytes.decode(rxdat) 
                 
-        lst = str.split()
+        lst = stri.split()
         povx,povy = sort_data(lst)
         if fixated_eyes(povx,povy) > 500:
             print ("Fixated eyes detected!")    
-
+            return povx,povy, True
         s.close()
     
     except ConnectionRefusedError as e:print ("ERROR:Unable to connect to ADRESS")
-    return povx,povy
+    return povx,povy,False
 
 
 ##########################################################################################
@@ -127,8 +132,13 @@ def collect_data():
 ##########################################################################################
 def run(): 
     "Main function to call"
-    x_pos,y_pos = collect_data()
-    plotter(x_pos,y_pos)
+    
+    x_pos,y_pos,fixation = collect_data()
+    if (fixation == True):
+        return True
+    else:
+        return False
+      
 
-
+    #plotter(x_pos,y_pos)
 
