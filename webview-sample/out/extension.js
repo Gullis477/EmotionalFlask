@@ -8,11 +8,11 @@ const cats = {
     'Testing EIDE': 'https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif'
 };
 function activate(context) {
-    context.subscriptions.push(vscode.commands.registerCommand('catCoding.start', () => {
+    context.subscriptions.push(vscode.commands.registerCommand('eide.start', () => {
         CatCodingPanel.createOrShow(context.extensionUri);
         vscode.window.showInformationMessage('Current emotion: ' + '{emotion variable}'); //change emotion varibe to emotion value
     }));
-    context.subscriptions.push(vscode.commands.registerCommand('catCoding.doRefactor', () => {
+    context.subscriptions.push(vscode.commands.registerCommand('eide.doRefactor', () => {
         if (CatCodingPanel.currentPanel) {
             CatCodingPanel.currentPanel.doRefactor();
         }
@@ -165,7 +165,7 @@ class CatCodingPanel {
 			</html>`;
     }
 }
-CatCodingPanel.viewType = 'catCoding';
+CatCodingPanel.viewType = 'eide';
 function getNonce() {
     let text = '';
     const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';

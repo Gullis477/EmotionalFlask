@@ -8,14 +8,14 @@ const cats = {
 
 export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(
-		vscode.commands.registerCommand('catCoding.start', () => {
+		vscode.commands.registerCommand('eide.start', () => {
 			CatCodingPanel.createOrShow(context.extensionUri);
 			vscode.window.showInformationMessage('Current emotion: ' + '{emotion variable}');	//change emotion varibe to emotion value
 		})
 	);
 
 	context.subscriptions.push(
-		vscode.commands.registerCommand('catCoding.doRefactor', () => {
+		vscode.commands.registerCommand('eide.doRefactor', () => {
 			if (CatCodingPanel.currentPanel) {
 				CatCodingPanel.currentPanel.doRefactor();
 			}
@@ -54,7 +54,7 @@ class CatCodingPanel {
 	 */
 	public static currentPanel: CatCodingPanel | undefined;
 
-	public static readonly viewType = 'catCoding';
+	public static readonly viewType = 'eide';
 
 	private readonly _panel: vscode.WebviewPanel;
 	private readonly _extensionUri: vscode.Uri;
