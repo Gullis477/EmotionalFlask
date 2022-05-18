@@ -32,7 +32,7 @@ def load_csv_file(file_name):
     except FileNotFoundError as Not_Found_Error:
         data_frame = pd.DataFrame()
         print(f'Error Message: {Not_Found_Error}')
-    print(data_frame)
+    #print(data_frame)
     return data_frame
 
 csv_file = 'csvfiles/test.csv'
