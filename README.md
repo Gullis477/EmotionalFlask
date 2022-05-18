@@ -13,7 +13,7 @@ This extension includes:
 - Install the files for the flask server from github
 - Open the terminal and navigate to the folder
 - Type "flask run" in the terminal
-- Opten the extension
+- Open the extension
 - If the webview did not open, run the command
 
 
