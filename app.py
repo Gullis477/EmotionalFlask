@@ -12,10 +12,7 @@ import threading
 import random
 import classification
 import pickle
-import test_E4.E4
 from Eyetracker import GazepointAPI
-
-
 from flask_moment import Moment
 from datetime import datetime
 
@@ -68,7 +65,6 @@ def get_files(target):
 def display_download():
     # path = 'uploads'
     # list_of_files = os.listdir(path)
-    test_E4.E4.all_e4()     #skickar e4 bild till mapp
     
     files = get_files(app.config['DOWNLOAD_FOLDER'])
 
@@ -101,15 +97,10 @@ def home():
       
         return render_template('index.html')
 
- 
-
 @app.route("/simulation")
 def simulation():
     # file = pd.read_csv("hrtestdata.csv")
     return render_template('simulation.html')
-
-
-
 
 @app.route('/upload', methods=['GET', 'POST'])  
 def upload():  
@@ -119,25 +110,10 @@ def upload():
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
     return render_template('upload.html')
 
-
-
-
-
-
-
-
-
 # @app.route('/download/<thing>')   outdated
 # def something_file(thing):
 #     path="uploads/"+thing
 #     return send_file(path, as_attachment= True)
-
-
-
-
-
-
-
 
 @app.context_processor
 def override_url_for():
@@ -157,8 +133,6 @@ def dated_url_for(endpoint, **values):
 @app.before_first_request #Denna tag gör så att funktionen körs innan den första "requesten". Koden i funktionen hade kunnat köras innan "run" i huvudprogrammet
 def before_first_request():
     threading.Thread(target=update_load).start() #startar en till tråd kör update_load
-
-
 
 @app.context_processor
 def inject_load():
@@ -192,7 +166,7 @@ def inject_load():
 def update_load():
     with app.app_context(): #app_context()
         while True:
-            time.sleep(10)
+            time.sleep(2)
             turbo.push(turbo.replace(render_template('turbo_template.html'), 'load')) #Tror att denna raden uppdaterar elementet med id 'load' i templated loadavg.html
 
 
