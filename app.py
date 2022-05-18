@@ -191,7 +191,7 @@ def inject_load():
 def update_load():
     with app.app_context(): #app_context()
         while True:
-            time.sleep(2)
+            time.sleep(10)
             turbo.push(turbo.replace(render_template('turbo_template.html'), 'load')) #Tror att denna raden uppdaterar elementet med id 'load' i templated loadavg.html
 
 
