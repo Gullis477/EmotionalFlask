@@ -14,7 +14,7 @@ This extension includes:
 - Open the terminal and navigate to the folder
 - Type "flask run" in the terminal
 - Open the extension
-- If the webview did not open, run the command
+- If the webview did not open, run the command eide.start
 
 
 ## This extension was made for the following devices:
