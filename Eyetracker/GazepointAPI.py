@@ -1,5 +1,5 @@
 from doctest import IGNORE_EXCEPTION_DETAIL
-from Eyetracker import heatmap
+import heatmap
 import socket
 import time
 
