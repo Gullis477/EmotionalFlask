@@ -10,7 +10,7 @@ from turbo_flask import Turbo #app
 import time
 import threading
 import random
-import classification
+#import classification
 import pickle
 from Eyetracker import GazepointAPI
 from flask_moment import Moment
@@ -84,7 +84,7 @@ def download(filename):
     
 
 
-
+test_eyetracker = True
 @app.route("/",methods=['GET', 'POST'])
 def home():
         i = 0
@@ -156,15 +156,18 @@ def inject_load():
         face = "\U0001F92F"
         coffe = u"\u2615"
 
-
     elif predicted_arousal == 0 and predicted_valence == 0:
         face = "\U0001F62D"
 
     elif predicted_arousal == 0 and predicted_valence == 1:
         face = "\U0001F60C"
     
+    if test_eyetracker:
+        eye = '\U0001F441'
+    else:
+        eye = 'ingenting'
 
-    return {'load_emotion':face,'load_break': coffe}
+    return {'load_emotion':face,'load_break': coffe,'load_eye' : eye}
 
 # TURBO
 def update_load():
