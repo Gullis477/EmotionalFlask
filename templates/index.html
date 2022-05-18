@@ -49,16 +49,20 @@
 
            
             <!-- <form style="margin-top: 50px;">   -->
-            <input style="background: #02499b;" type="button" onclick="test()"  value="Start" id = "start" class="start"/> 
+                    <!-- <input style="background: #02499b;" type="button" input type ="submit" name="Encrypt" onclick="test()"  value="Encrypt" id = "start" class="start"/>
+                    <input style="background: #02499b;" type="button"  value="Stop" onclick="red()" id = "stop" class="start"/>  -->
 
-            <input style="background: #02499b;" type="button"  value="Stop" onclick="red()" id = "stop" class="start"/> 
-
-
+                <form method="post" action="/">
+                    <input style="background: #02499b;" type="submit" input type ="submit" name="Start" onclick="test()"  value="Start" id = "start" class="start"/> 
+                    <input style="background: #02499b;" type="submit" name="Stop"  value="Stop" onclick="red()" id = "stop" class="start"/> 
+                    <!-- <input type="submit" value="Encrypt" name="Encrypt"/>
+                    <input type="submit" value="Decrypt" name="Decrypt" /> -->
+                </form>
             <script>
 
                     let arrstart = ['Saab'];
                     let arrstop = ['Saab'];
-
+                  
 
                     function test(){
                         let elemstart = document.getElementById('start');
@@ -80,6 +84,7 @@
                             console.log("1111");
                             elemstart.style.background = 'rgb(68, 227, 2)'; //green
                             arrstart.push("rgb(68, 227, 2)");
+                           
                         }
                         else if (elemcolorstart === "rgb(68, 227, 2)") {    //green
                             console.log("3333");
