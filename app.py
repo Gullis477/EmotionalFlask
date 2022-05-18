@@ -95,7 +95,8 @@ def home():
         if (request.method == 'POST'):
             if (request.form.get('Start') == 'Start'):
                 GazepointAPI.run()
-                
+            elif (request.form.get('Stop') == 'Stop'):
+                GazepointAPI.calibrate()
               
       
         return render_template('index.html')
