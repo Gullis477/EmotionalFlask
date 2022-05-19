@@ -134,7 +134,7 @@ def run():
     plt.savefig('static/heatmap')
     if (fixation == True):
         #Create a text file
-        status = (" It appears that you have gotten stuck at approx"+ " " + str(row)+":lines from the top")
+        status = (" It appears that you have gotten stuck at approx"+ " " + str(row)+" lines from the top")
         f = open('tracking_results','a')
         f.truncate(0)
         f.write(status)
