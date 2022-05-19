@@ -143,6 +143,6 @@ def run():
     else:
         return False
       
-run()
+
     #plotter(x_pos,y_pos)
 

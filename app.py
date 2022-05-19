@@ -161,10 +161,15 @@ def inject_load():
     elif predicted_arousal == 0 and predicted_valence == 1:
         face = "\U0001F60C"
     
+    with  open('tracking_results', 'r') as f:
+        data = f.read().replace('[','')
+        
+        
+    test_eyetracker = False    
     if test_eyetracker:
         eye = '\U0001F441'
     else:
-        eye = 'ingenting'
+        eye = data
 
     return {'load_emotion':face,'load_break': coffe,'load_eye' : eye}
 
