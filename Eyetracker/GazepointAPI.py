@@ -42,13 +42,21 @@ def fixated_eyes(x,y):
     "Check for eye fixation"
     #Max amount of similar datapoints: 1200
     counter = 0
+    fix_pos=[]
     for i in range(len(x)-1):
         if (x[i][4:5] == x[i+1][4:5]):
             counter = counter + 1
     for i in range(len(y)-1):
         if (y[i][4:5] == y[i+1][4:5]):
             counter = counter + 1
-    return counter
+            fix_pos.append(y[i])
+
+    y_temp = [float(y_cord) for y_cord in fix_pos]  
+
+    summ = sum(y_temp)
+    length = float(len(fix_pos))
+    pos = summ/length
+    return counter,pos
 
 ###########################################################################   
 # Host machine IP
@@ -88,9 +96,12 @@ def collect_data():
                 
         lst = stri.split()
         povx,povy = sort_data(lst)
-        if fixated_eyes(povx,povy) > 500:
-            print ("Fixated eyes detected!")    
-            return povx,povy, True
+        num,pos = fixated_eyes(povx,povy)
+        if  num > 100: # should be 500
+            print ("Fixated eyes detected!")  
+            lines = 54 # This is the total number of lines that can be seen in the window
+            row = pos*lines 
+            return povx,povy, True, int(row)
         s.close()
     
     except ConnectionRefusedError as e:print ("ERROR:Unable to connect to ADRESS")
@@ -103,30 +114,35 @@ def collect_data():
 def run(): 
     "Main function to call"
     
-    x_pos,y_pos,fixation = collect_data()
+    x_pos,y_pos,fixation,row = collect_data()
   
-   
+    temp = []
     
-    # if len(x)<len(y):
-    #     for i in range(len(x)):
-    #         temp.append(y[i])
-    #     y.clear()
-    #     y = temp
-    # if len(x)>len(y):
-    #     for i in range(len(y)):
-    #         temp.append(y[i])
-    #     x.clear()
-    #     x = temp
+    if len(x_pos)<len(y_pos):
+        for i in range(len(x_pos)):
+            temp.append(y_pos[i])
+        y_pos.clear()
+        y_pos = temp
+    if len(x_pos)>len(y_pos):
+        for i in range(len(y_pos)):
+            temp.append(y_pos[i])
+        x_pos.clear()
+        x_pos = temp
     x = [float(x_cord) for x_cord in x_pos]   
-    y = [float(x_cord) for x_cord in x_pos]   
-    df = pd.DataFrame(x,y)
+    y = [float(y_cord) for y_cord in y_pos]   
     sns.jointplot(x=x, y=y, kind='hex',marginal_kws=dict(bins=20, fill=False))
     plt.savefig('static/heatmap')
     if (fixation == True):
+        #Create a text file
+        status = (" It appears that you have gotten stuck at approx"+ " " + str(row)+":lines from the top")
+        f = open('tracking_results','a')
+        f.truncate(0)
+        f.write(status)
+        f.close()
         return True
     else:
         return False
       
-
+run()
     #plotter(x_pos,y_pos)
 

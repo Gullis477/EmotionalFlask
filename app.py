@@ -84,18 +84,16 @@ def download(filename):
     
 
 
-test_eyetracker = False
+
 @app.route("/",methods=['GET', 'POST'])
 def home():
         i = 0
         if (request.method == 'POST'):
             if (request.form.get('Start') == 'Start'):
+                run_tracker = False
                 while (GazepointAPI.run() == False):
                     print ("Tracking....Tracking...Tracking...Tracking...Tracking...Tracking...Tracking...Tracking...Tracking...Tracking...Tracking...Tracking...Tracking...Tracking...")
-                  
-                else:
-                    test_eyetracker = True
-                   
+                
             elif (request.form.get('Stop') == 'Stop'):
                 GazepointAPI.calibrate()
               
