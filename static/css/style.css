@@ -838,13 +838,30 @@ height: 300px;
   z-index: 20;
 }
 
+
+/* 
 .heat {
   margin-top: 200px;
   float: left;
   margin-left: 200px;
-  /* display: inline; */
+   display: inline; 
+} */
+
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
 }
 
+
+.center2 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 98%;
+}
 
 .kladd {
   float: left;
