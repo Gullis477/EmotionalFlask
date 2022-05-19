@@ -49,7 +49,6 @@
                     <thead>
                         <tr>
                         <th class="text-left">File</th>
-                        <!-- <th class="text-left">Time</th> -->
                         <th class="text-left">Size</th>
                         </tr>
                     </thead>
@@ -61,7 +60,6 @@
                         {% for filename, mtime, size in files -%}
                         <tr>
                         <td class="text-left"><a class="text-left" href="{{ url_for('download', filename=filename) }}" download>{{ filename }}</a></td>
-                        <!-- <td class="text-left">{{ moment(mtime, local=False).format('DD.MM.YYYY HH:mm') }}</td> -->
                         <td class="text-left" style="text-align:left;">{{ size | byte_units }}</td>
                         </tr>
                         {% endfor -%}
@@ -71,17 +69,7 @@
                 
 
 
-<!-- 
-            <table class="tablestyle">
-                {% for filename, mtime, size in files -%}
-                <tr>
-                  <td style=" z-index: 22; pointer-events: auto;"><a style=" z-index: 22; pointer-events: auto;" href="{{ url_for('download', filename=filename) }}" download>{{ filename }}</a></td>
-                  <td>{{ moment(mtime, local=False).format('DD.MM.YYYY HH:mm') }}</td>
-                  <td style="text-align:right;">{{ size | byte_units }}</td>
-                </tr>
-                {% endfor -%}
-            </table>
- -->
+
 
             <script type="text/javascript">
                 (() => {
