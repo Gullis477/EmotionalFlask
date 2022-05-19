@@ -839,8 +839,10 @@ height: 300px;
 }
 
 .heat {
-  margin-top: -0px;
-  margin-left: 20px;
+  margin-top: 200px;
+  float: left;
+  margin-left: 200px;
+  /* display: inline; */
 }
 
 
@@ -859,6 +861,9 @@ height: 300px;
 }
 
 .eyes {
-  font-size: 100px;
-  float: right;
+  font-size: 20px;
+  float: left;
+  color: white;
+  margin-left: 10px;
+  margin-bottom: 100px;
 }

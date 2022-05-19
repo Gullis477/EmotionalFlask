@@ -122,18 +122,26 @@
             </div>
 
 
+            <article style="text-align: center;">
 
-            <h1 style="margin-top: 500px; color: white; margin-left: 20px; font-size: 40px; font-family: Ubuntu, sans-serif;">Heatmap</h1>
+                <h1 style="margin-top: 500px; color: white; margin-left: 20px; font-size: 40px; font-family: Ubuntu, sans-serif;">Heatmap</h1>
 
+            </article>
 
-            <img id="heat" class="heat" src="{{ url_for('static', filename='heatmap.png') }}"/>
-
-
-            <div id="eyes" class="eyes">                
+            <div style="text-align: center;" id="eyes" class="eyes">                
  
-                <p id="eye" style="background: transparent;">{{ load_eye }}</p>
+                <p id="eye" class="eyes">{{ load_eye }}</p>
 
             </div>
+
+            <article style="text-align: center;">
+
+                <img id="heat" src="{{ url_for('static', filename='heatmap.png') }}"/>
+
+            </article>
+
+
+          
 
 
 
