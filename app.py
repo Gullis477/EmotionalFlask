@@ -85,12 +85,12 @@ def download(filename):
     
 
 #false
-test_eyetracker = True
-def getTracker():
-    return test_eyetracker
+# test_eyetracker = True
+# def getTracker():
+#     return test_eyetracker
 
-def setTracker(value):
-    test_eyetracker=value
+# def setTracker(value):
+#     test_eyetracker=value
 
 
 
@@ -175,26 +175,27 @@ def inject_load():
     with  open('tracking_results', 'r') as f:
         data = f.read().replace('[','')
         
-        
-    test_eyetracker = False    
-    if test_eyetracker:
-        eye = ' '
+    if(len(data)==0):   
+        test_eyetracker = False 
+        pic = " "
     else:
-        eye = data
+        pic = "\U0001F6A8"
+    eye = data
 
-    return {'load_emotion':face,'load_break': coffe,'load_eye' : eye}
+
+    return {'load_emotion':face,'load_break': coffe,'load_eye' : eye, 'symbol' : pic}
 
 # TURBO
 def update_load():
     with app.app_context(): #app_context()
         while True:
-            time.sleep(2)
+            time.sleep(20)
             turbo.push(turbo.replace(render_template('turbo_template.html'), 'load')) #Tror att denna raden uppdaterar elementet med id 'load' i templated loadavg.html
 
 def update_eye():
     with app.app_context(): #app_context()
         while True:
-            time.sleep(2)
+            time.sleep(10)
             turbo.push(turbo.replace(render_template('eye_template.html'), 'eyes')) #Tror att denna raden uppdaterar elementet med id 'load' i templated loadavg.html
 
 
