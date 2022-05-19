@@ -12,9 +12,10 @@ This extension includes:
 ## How to use:
 - Install the files for the flask server from github
 - Open the terminal and navigate to the folder
+- Run Gazepoint control (Available in installation folder or accessible on https://www.gazept.com/developer/ )
 - Type "flask run" in the terminal
 - Open the extension
-- If the webview did not open, run the command eide.start
+- If the webview did not open, run the command Start coding from the command promt
 
 
 ## This extension was made for the following devices:
