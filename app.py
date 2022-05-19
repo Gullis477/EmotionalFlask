@@ -1,5 +1,6 @@
 
 import os
+import re
 from flask import Flask, render_template, flash, redirect, url_for, request, send_from_directory, send_file
 import matplotlib.pyplot as plt
 from numpy import result_type
@@ -83,19 +84,26 @@ def download(filename):
 ##############################
     
 
+#false
+test_eyetracker = True
+def getTracker():
+    return test_eyetracker
 
-test_eyetracker = False
+def setTracker(value):
+    test_eyetracker=value
+
+
+
+
 @app.route("/",methods=['GET', 'POST'])
 def home():
         i = 0
         if (request.method == 'POST'):
             if (request.form.get('Start') == 'Start'):
+                run_tracker = False
                 while (GazepointAPI.run() == False):
                     print ("Tracking....Tracking...Tracking...Tracking...Tracking...Tracking...Tracking...Tracking...Tracking...Tracking...Tracking...Tracking...Tracking...Tracking...")
-                  
-                else:
-                    test_eyetracker = True
-                   
+                
             elif (request.form.get('Stop') == 'Stop'):
                 GazepointAPI.calibrate()
               
@@ -138,6 +146,7 @@ def dated_url_for(endpoint, **values):
 @app.before_first_request #Denna tag gör så att funktionen körs innan den första "requesten". Koden i funktionen hade kunnat köras innan "run" i huvudprogrammet
 def before_first_request():
     threading.Thread(target=update_load).start() #startar en till tråd kör update_load
+    threading.Thread(target=update_eye).start()
 
 @app.context_processor
 def inject_load():
@@ -163,10 +172,10 @@ def inject_load():
     elif predicted_arousal == 0 and predicted_valence == 1:
         face = "\U0001F60C"
     
-    if test_eyetracker:
+    if getTracker():
         eye = '\U0001F441'
     else:
-        eye = 'ingenting'
+        eye = ' '
 
     return {'load_emotion':face,'load_break': coffe,'load_eye' : eye}
 
@@ -176,6 +185,12 @@ def update_load():
         while True:
             time.sleep(2)
             turbo.push(turbo.replace(render_template('turbo_template.html'), 'load')) #Tror att denna raden uppdaterar elementet med id 'load' i templated loadavg.html
+
+def update_eye():
+    with app.app_context(): #app_context()
+        while True:
+            time.sleep(2)
+            turbo.push(turbo.replace(render_template('eye_template.html'), 'eyes')) #Tror att denna raden uppdaterar elementet med id 'load' i templated loadavg.html
 
 
 # ------------------------------------------------------------------------------
