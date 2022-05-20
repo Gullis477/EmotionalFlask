@@ -12,11 +12,11 @@ This extension includes:
 ## How to use:
 - Install the files for the flask server from github
 - Open the terminal and navigate to the folder
-- Run Gazepoint control (Available in installation folder or accessible on https://www.gazept.com/developer/ )
+- Run Gazepoint control, accessible on https://www.gazept.com/developer/ )
 - Type "flask run" in the terminal
 - Open the extension
 - If the webview did not open, run the command Start coding from the command promt
-
+- "Error, could not connect to Adress" means that the extensioj could not establish a connection to the eye tracker. Make sure the eye tracker works in Gazepoint control before launching the extension.
 
 ## This extension was made for the following devices:
 Empatica E4 wristband
